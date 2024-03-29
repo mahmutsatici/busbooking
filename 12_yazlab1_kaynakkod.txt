@@ -1,0 +1,2355 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+/*
+| -------------------------------------------------------------------
+| AUTO-LOADER
+| -------------------------------------------------------------------
+| This file specifies which systems should be loaded by default.
+|
+| In order to keep the framework as light-weight as possible only the
+| absolute minimal resources are loaded by default. For example,
+| the database is not connected to automatically since no assumption
+| is made regarding whether you intend to use it.  This file lets
+| you globally define which systems you would like loaded with every
+| request.
+|
+| -------------------------------------------------------------------
+| Instructions
+| -------------------------------------------------------------------
+|
+| These are the things you can load automatically:
+|
+| 1. Packages
+| 2. Libraries
+| 3. Drivers
+| 4. Helper files
+| 5. Custom config files
+| 6. Language files
+| 7. Models
+|
+*/
+
+/*
+| -------------------------------------------------------------------
+|  Auto-load Packages
+| -------------------------------------------------------------------
+| Prototype:
+|
+|  $autoload['packages'] = array(APPPATH.'third_party', '/usr/local/shared');
+|
+*/
+$autoload['packages'] = array();
+
+/*
+| -------------------------------------------------------------------
+|  Auto-load Libraries
+| -------------------------------------------------------------------
+| These are the classes located in system/libraries/ or your
+| application/libraries/ directory, with the addition of the
+| 'database' library, which is somewhat of a special case.
+|
+| Prototype:
+|
+|	$autoload['libraries'] = array('database', 'email', 'session');
+|
+| You can also supply an alternative library name to be assigned
+| in the controller:
+|
+|	$autoload['libraries'] = array('user_agent' => 'ua');
+*/
+$autoload['libraries'] = array();
+
+/*
+| -------------------------------------------------------------------
+|  Auto-load Drivers
+| -------------------------------------------------------------------
+| These classes are located in system/libraries/ or in your
+| application/libraries/ directory, but are also placed inside their
+| own subdirectory and they extend the CI_Driver_Library class. They
+| offer multiple interchangeable driver options.
+|
+| Prototype:
+|
+|	$autoload['drivers'] = array('cache');
+|
+| You can also supply an alternative property name to be assigned in
+| the controller:
+|
+|	$autoload['drivers'] = array('cache' => 'cch');
+|
+*/
+$autoload['drivers'] = array();
+
+/*
+| -------------------------------------------------------------------
+|  Auto-load Helper Files
+| -------------------------------------------------------------------
+| Prototype:
+|
+|	$autoload['helper'] = array('url', 'file');
+*/
+$autoload['helper'] = array("url");
+
+/*
+| -------------------------------------------------------------------
+|  Auto-load Config files
+| -------------------------------------------------------------------
+| Prototype:
+|
+|	$autoload['config'] = array('config1', 'config2');
+|
+| NOTE: This item is intended for use ONLY if you have created custom
+| config files.  Otherwise, leave it blank.
+|
+*/
+$autoload['config'] = array();
+
+/*
+| -------------------------------------------------------------------
+|  Auto-load Language files
+| -------------------------------------------------------------------
+| Prototype:
+|
+|	$autoload['language'] = array('lang1', 'lang2');
+|
+| NOTE: Do not include the "_lang" part of your file.  For example
+| "codeigniter_lang.php" would be referenced as array('codeigniter');
+|
+*/
+$autoload['language'] = array();
+
+/*
+| -------------------------------------------------------------------
+|  Auto-load Models
+| -------------------------------------------------------------------
+| Prototype:
+|
+|	$autoload['model'] = array('first_model', 'second_model');
+|
+| You can also supply an alternative model name to be assigned
+| in the controller:
+|
+|	$autoload['model'] = array('first_model' => 'first');
+*/
+$autoload['model'] = array();
+
+
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+/*
+|--------------------------------------------------------------------------
+| Base Site URL
+|--------------------------------------------------------------------------
+|
+| URL to your CodeIgniter root. Typically this will be your base URL,
+| WITH a trailing slash:
+|
+|	http://example.com/
+|
+| WARNING: You MUST set this value!
+|
+| If it is not set, then CodeIgniter will try to guess the protocol and
+| path to your installation, but due to security concerns the hostname will
+| be set to $_SERVER['SERVER_ADDR'] if available, or localhost otherwise.
+| The auto-detection mechanism exists only for convenience during
+| development and MUST NOT be used in production!
+|
+| If you need to allow multiple domains, remember that this file is still
+| a PHP script and you can easily do that on your own.
+|
+*/
+$config['base_url'] = 'http://localhost:8080/codeigniter/';
+
+/*
+|--------------------------------------------------------------------------
+| Index File
+|--------------------------------------------------------------------------
+|
+| Typically this will be your index.php file, unless you've renamed it to
+| something else. If you are using mod_rewrite to remove the page set this
+| variable so that it is blank.
+|
+*/
+$config['index_page'] = 'index.php';
+
+/*
+|--------------------------------------------------------------------------
+| URI PROTOCOL
+|--------------------------------------------------------------------------
+|
+| This item determines which server global should be used to retrieve the
+| URI string.  The default setting of 'REQUEST_URI' works for most servers.
+| If your links do not seem to work, try one of the other delicious flavors:
+|
+| 'REQUEST_URI'    Uses $_SERVER['REQUEST_URI']
+| 'QUERY_STRING'   Uses $_SERVER['QUERY_STRING']
+| 'PATH_INFO'      Uses $_SERVER['PATH_INFO']
+|
+| WARNING: If you set this to 'PATH_INFO', URIs will always be URL-decoded!
+*/
+$config['uri_protocol']	= 'REQUEST_URI';
+
+/*
+|--------------------------------------------------------------------------
+| URL suffix
+|--------------------------------------------------------------------------
+|
+| This option allows you to add a suffix to all URLs generated by CodeIgniter.
+| For more information please see the user guide:
+|
+| https://codeigniter.com/userguide3/general/urls.html
+|
+| Note: This option is ignored for CLI requests.
+*/
+$config['url_suffix'] = '';
+
+/*
+|--------------------------------------------------------------------------
+| Default Language
+|--------------------------------------------------------------------------
+|
+| This determines which set of language files should be used. Make sure
+| there is an available translation if you intend to use something other
+| than english.
+|
+*/
+$config['language']	= 'english';
+
+/*
+|--------------------------------------------------------------------------
+| Default Character Set
+|--------------------------------------------------------------------------
+|
+| This determines which character set is used by default in various methods
+| that require a character set to be provided.
+|
+| See http://php.net/htmlspecialchars for a list of supported charsets.
+|
+*/
+$config['charset'] = 'UTF-8';
+
+/*
+|--------------------------------------------------------------------------
+| Enable/Disable System Hooks
+|--------------------------------------------------------------------------
+|
+| If you would like to use the 'hooks' feature you must enable it by
+| setting this variable to TRUE (boolean).  See the user guide for details.
+|
+*/
+$config['enable_hooks'] = FALSE;
+
+/*
+|--------------------------------------------------------------------------
+| Class Extension Prefix
+|--------------------------------------------------------------------------
+|
+| This item allows you to set the filename/classname prefix when extending
+| native libraries.  For more information please see the user guide:
+|
+| https://codeigniter.com/userguide3/general/core_classes.html
+| https://codeigniter.com/userguide3/general/creating_libraries.html
+|
+*/
+$config['subclass_prefix'] = 'MY_';
+
+/*
+|--------------------------------------------------------------------------
+| Composer auto-loading
+|--------------------------------------------------------------------------
+|
+| Enabling this setting will tell CodeIgniter to look for a Composer
+| package auto-loader script in application/vendor/autoload.php.
+|
+|	$config['composer_autoload'] = TRUE;
+|
+| Or if you have your vendor/ directory located somewhere else, you
+| can opt to set a specific path as well:
+|
+|	$config['composer_autoload'] = '/path/to/vendor/autoload.php';
+|
+| For more information about Composer, please visit http://getcomposer.org/
+|
+| Note: This will NOT disable or override the CodeIgniter-specific
+|	autoloading (application/config/autoload.php)
+*/
+$config['composer_autoload'] = FALSE;
+
+/*
+|--------------------------------------------------------------------------
+| Allowed URL Characters
+|--------------------------------------------------------------------------
+|
+| This lets you specify which characters are permitted within your URLs.
+| When someone tries to submit a URL with disallowed characters they will
+| get a warning message.
+|
+| As a security measure you are STRONGLY encouraged to restrict URLs to
+| as few characters as possible.  By default only these are allowed: a-z 0-9~%.:_-
+|
+| Leave blank to allow all characters -- but only if you are insane.
+|
+| The configured value is actually a regular expression character group
+| and it will be executed as: ! preg_match('/^[<permitted_uri_chars>]+$/i
+|
+| DO NOT CHANGE THIS UNLESS YOU FULLY UNDERSTAND THE REPERCUSSIONS!!
+|
+*/
+$config['permitted_uri_chars'] = 'a-z 0-9~%.:_\-';
+
+/*
+|--------------------------------------------------------------------------
+| Enable Query Strings
+|--------------------------------------------------------------------------
+|
+| By default CodeIgniter uses search-engine friendly segment based URLs:
+| example.com/who/what/where/
+|
+| You can optionally enable standard query string based URLs:
+| example.com?who=me&what=something&where=here
+|
+| Options are: TRUE or FALSE (boolean)
+|
+| The other items let you set the query string 'words' that will
+| invoke your controllers and its functions:
+| example.com/index.php?c=controller&m=function
+|
+| Please note that some of the helpers won't work as expected when
+| this feature is enabled, since CodeIgniter is designed primarily to
+| use segment based URLs.
+|
+*/
+$config['enable_query_strings'] = FALSE;
+$config['controller_trigger'] = 'c';
+$config['function_trigger'] = 'm';
+$config['directory_trigger'] = 'd';
+
+/*
+|--------------------------------------------------------------------------
+| Allow $_GET array
+|--------------------------------------------------------------------------
+|
+| By default CodeIgniter enables access to the $_GET array.  If for some
+| reason you would like to disable it, set 'allow_get_array' to FALSE.
+|
+| WARNING: This feature is DEPRECATED and currently available only
+|          for backwards compatibility purposes!
+|
+*/
+$config['allow_get_array'] = TRUE;
+
+/*
+|--------------------------------------------------------------------------
+| Error Logging Threshold
+|--------------------------------------------------------------------------
+|
+| You can enable error logging by setting a threshold over zero. The
+| threshold determines what gets logged. Threshold options are:
+|
+|	0 = Disables logging, Error logging TURNED OFF
+|	1 = Error Messages (including PHP errors)
+|	2 = Debug Messages
+|	3 = Informational Messages
+|	4 = All Messages
+|
+| You can also pass an array with threshold levels to show individual error types
+|
+| 	array(2) = Debug Messages, without Error Messages
+|
+| For a live site you'll usually only enable Errors (1) to be logged otherwise
+| your log files will fill up very fast.
+|
+*/
+$config['log_threshold'] = 0;
+
+/*
+|--------------------------------------------------------------------------
+| Error Logging Directory Path
+|--------------------------------------------------------------------------
+|
+| Leave this BLANK unless you would like to set something other than the default
+| application/logs/ directory. Use a full server path with trailing slash.
+|
+*/
+$config['log_path'] = '';
+
+/*
+|--------------------------------------------------------------------------
+| Log File Extension
+|--------------------------------------------------------------------------
+|
+| The default filename extension for log files. The default 'php' allows for
+| protecting the log files via basic scripting, when they are to be stored
+| under a publicly accessible directory.
+|
+| Note: Leaving it blank will default to 'php'.
+|
+*/
+$config['log_file_extension'] = '';
+
+/*
+|--------------------------------------------------------------------------
+| Log File Permissions
+|--------------------------------------------------------------------------
+|
+| The file system permissions to be applied on newly created log files.
+|
+| IMPORTANT: This MUST be an integer (no quotes) and you MUST use octal
+|            integer notation (i.e. 0700, 0644, etc.)
+*/
+$config['log_file_permissions'] = 0644;
+
+/*
+|--------------------------------------------------------------------------
+| Date Format for Logs
+|--------------------------------------------------------------------------
+|
+| Each item that is logged has an associated date. You can use PHP date
+| codes to set your own date formatting
+|
+*/
+$config['log_date_format'] = 'Y-m-d H:i:s';
+
+/*
+|--------------------------------------------------------------------------
+| Error Views Directory Path
+|--------------------------------------------------------------------------
+|
+| Leave this BLANK unless you would like to set something other than the default
+| application/views/errors/ directory.  Use a full server path with trailing slash.
+|
+*/
+$config['error_views_path'] = '';
+
+/*
+|--------------------------------------------------------------------------
+| Cache Directory Path
+|--------------------------------------------------------------------------
+|
+| Leave this BLANK unless you would like to set something other than the default
+| application/cache/ directory.  Use a full server path with trailing slash.
+|
+*/
+$config['cache_path'] = '';
+
+/*
+|--------------------------------------------------------------------------
+| Cache Include Query String
+|--------------------------------------------------------------------------
+|
+| Whether to take the URL query string into consideration when generating
+| output cache files. Valid options are:
+|
+|	FALSE      = Disabled
+|	TRUE       = Enabled, take all query parameters into account.
+|	             Please be aware that this may result in numerous cache
+|	             files generated for the same page over and over again.
+|	array('q') = Enabled, but only take into account the specified list
+|	             of query parameters.
+|
+*/
+$config['cache_query_string'] = FALSE;
+
+/*
+|--------------------------------------------------------------------------
+| Encryption Key
+|--------------------------------------------------------------------------
+|
+| If you use the Encryption class, you must set an encryption key.
+| See the user guide for more info.
+|
+| https://codeigniter.com/userguide3/libraries/encryption.html
+|
+*/
+$config['encryption_key'] = '';
+
+/*
+|--------------------------------------------------------------------------
+| Session Variables
+|--------------------------------------------------------------------------
+|
+| 'sess_driver'
+|
+|	The storage driver to use: files, database, redis, memcached
+|
+| 'sess_cookie_name'
+|
+|	The session cookie name, must contain only [0-9a-z_-] characters
+|
+| 'sess_samesite'
+|
+|	Session cookie SameSite attribute: Lax (default), Strict or None
+|
+| 'sess_expiration'
+|
+|	The number of SECONDS you want the session to last.
+|	Setting to 0 (zero) means expire when the browser is closed.
+|
+| 'sess_save_path'
+|
+|	The location to save sessions to, driver dependent.
+|
+|	For the 'files' driver, it's a path to a writable directory.
+|	WARNING: Only absolute paths are supported!
+|
+|	For the 'database' driver, it's a table name.
+|	Please read up the manual for the format with other session drivers.
+|
+|	IMPORTANT: You are REQUIRED to set a valid save path!
+|
+| 'sess_match_ip'
+|
+|	Whether to match the user's IP address when reading the session data.
+|
+|	WARNING: If you're using the database driver, don't forget to update
+|	         your session table's PRIMARY KEY when changing this setting.
+|
+| 'sess_time_to_update'
+|
+|	How many seconds between CI regenerating the session ID.
+|
+| 'sess_regenerate_destroy'
+|
+|	Whether to destroy session data associated with the old session ID
+|	when auto-regenerating the session ID. When set to FALSE, the data
+|	will be later deleted by the garbage collector.
+|
+| Other session cookie settings are shared with the rest of the application,
+| except for 'cookie_prefix' and 'cookie_httponly', which are ignored here.
+|
+*/
+$config['sess_driver'] = 'files';
+$config['sess_cookie_name'] = 'ci_session';
+$config['sess_samesite'] = 'Lax';
+$config['sess_expiration'] = 7200;
+$config['sess_save_path'] = NULL;
+$config['sess_match_ip'] = FALSE;
+$config['sess_time_to_update'] = 300;
+$config['sess_regenerate_destroy'] = FALSE;
+
+/*
+|--------------------------------------------------------------------------
+| Cookie Related Variables
+|--------------------------------------------------------------------------
+|
+| 'cookie_prefix'   = Set a cookie name prefix if you need to avoid collisions
+| 'cookie_domain'   = Set to .your-domain.com for site-wide cookies
+| 'cookie_path'     = Typically will be a forward slash
+| 'cookie_secure'   = Cookie will only be set if a secure HTTPS connection exists.
+| 'cookie_httponly' = Cookie will only be accessible via HTTP(S) (no javascript)
+| 'cookie_samesite' = Cookie's samesite attribute (Lax, Strict or None)
+|
+| Note: These settings (with the exception of 'cookie_prefix' and
+|       'cookie_httponly') will also affect sessions.
+|
+*/
+$config['cookie_prefix']	= '';
+$config['cookie_domain']	= '';
+$config['cookie_path']		= '/';
+$config['cookie_secure']	= FALSE;
+$config['cookie_httponly'] 	= FALSE;
+$config['cookie_samesite'] 	= 'Lax';
+
+/*
+|--------------------------------------------------------------------------
+| Standardize newlines
+|--------------------------------------------------------------------------
+|
+| Determines whether to standardize newline characters in input data,
+| meaning to replace \r\n, \r, \n occurrences with the PHP_EOL value.
+|
+| WARNING: This feature is DEPRECATED and currently available only
+|          for backwards compatibility purposes!
+|
+*/
+$config['standardize_newlines'] = FALSE;
+
+/*
+|--------------------------------------------------------------------------
+| Global XSS Filtering
+|--------------------------------------------------------------------------
+|
+| Determines whether the XSS filter is always active when GET, POST or
+| COOKIE data is encountered
+|
+| WARNING: This feature is DEPRECATED and currently available only
+|          for backwards compatibility purposes!
+|
+*/
+$config['global_xss_filtering'] = FALSE;
+
+/*
+|--------------------------------------------------------------------------
+| Cross Site Request Forgery
+|--------------------------------------------------------------------------
+| Enables a CSRF cookie token to be set. When set to TRUE, token will be
+| checked on a submitted form. If you are accepting user data, it is strongly
+| recommended CSRF protection be enabled.
+|
+| 'csrf_token_name' = The token name
+| 'csrf_cookie_name' = The cookie name
+| 'csrf_expire' = The number in seconds the token should expire.
+| 'csrf_regenerate' = Regenerate token on every submission
+| 'csrf_exclude_uris' = Array of URIs which ignore CSRF checks
+*/
+$config['csrf_protection'] = FALSE;
+$config['csrf_token_name'] = 'csrf_test_name';
+$config['csrf_cookie_name'] = 'csrf_cookie_name';
+$config['csrf_expire'] = 7200;
+$config['csrf_regenerate'] = TRUE;
+$config['csrf_exclude_uris'] = array();
+
+/*
+|--------------------------------------------------------------------------
+| Output Compression
+|--------------------------------------------------------------------------
+|
+| Enables Gzip output compression for faster page loads.  When enabled,
+| the output class will test whether your server supports Gzip.
+| Even if it does, however, not all browsers support compression
+| so enable only if you are reasonably sure your visitors can handle it.
+|
+| Only used if zlib.output_compression is turned off in your php.ini.
+| Please do not use it together with httpd-level output compression.
+|
+| VERY IMPORTANT:  If you are getting a blank page when compression is enabled it
+| means you are prematurely outputting something to your browser. It could
+| even be a line of whitespace at the end of one of your scripts.  For
+| compression to work, nothing can be sent before the output buffer is called
+| by the output class.  Do not 'echo' any values with compression enabled.
+|
+*/
+$config['compress_output'] = FALSE;
+
+/*
+|--------------------------------------------------------------------------
+| Master Time Reference
+|--------------------------------------------------------------------------
+|
+| Options are 'local' or any PHP supported timezone. This preference tells
+| the system whether to use your server's local time as the master 'now'
+| reference, or convert it to the configured one timezone. See the 'date
+| helper' page of the user guide for information regarding date handling.
+|
+*/
+$config['time_reference'] = 'local';
+
+/*
+|--------------------------------------------------------------------------
+| Rewrite PHP Short Tags
+|--------------------------------------------------------------------------
+|
+| If your PHP installation does not have short tag support enabled CI
+| can rewrite the tags on-the-fly, enabling you to utilize that syntax
+| in your view files.  Options are TRUE or FALSE (boolean)
+|
+| Note: You need to have eval() enabled for this to work.
+|
+*/
+$config['rewrite_short_tags'] = FALSE;
+
+/*
+|--------------------------------------------------------------------------
+| Reverse Proxy IPs
+|--------------------------------------------------------------------------
+|
+| If your server is behind a reverse proxy, you must whitelist the proxy
+| IP addresses from which CodeIgniter should trust headers such as
+| HTTP_X_FORWARDED_FOR and HTTP_CLIENT_IP in order to properly identify
+| the visitor's IP address.
+|
+| You can use both an array or a comma-separated list of proxy addresses,
+| as well as specifying whole subnets. Here are a few examples:
+|
+| Comma-separated:	'10.0.1.200,192.168.5.0/24'
+| Array:		array('10.0.1.200', '192.168.5.0/24')
+*/
+$config['proxy_ips'] = '';
+
+
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+/*
+| -------------------------------------------------------------------
+| DATABASE CONNECTIVITY SETTINGS
+| -------------------------------------------------------------------
+| This file will contain the settings needed to access your database.
+|
+| For complete instructions please consult the 'Database Connection'
+| page of the User Guide.
+|
+| -------------------------------------------------------------------
+| EXPLANATION OF VARIABLES
+| -------------------------------------------------------------------
+|
+|	['dsn']      The full DSN string describe a connection to the database.
+|	['hostname'] The hostname of your database server.
+|	['username'] The username used to connect to the database
+|	['password'] The password used to connect to the database
+|	['database'] The name of the database you want to connect to
+|	['dbdriver'] The database driver. e.g.: mysqli.
+|			Currently supported:
+|				 cubrid, ibase, mssql, mysql, mysqli, oci8,
+|				 odbc, pdo, postgre, sqlite, sqlite3, sqlsrv
+|	['dbprefix'] You can add an optional prefix, which will be added
+|				 to the table name when using the  Query Builder class
+|	['pconnect'] TRUE/FALSE - Whether to use a persistent connection
+|	['db_debug'] TRUE/FALSE - Whether database errors should be displayed.
+|	['cache_on'] TRUE/FALSE - Enables/disables query caching
+|	['cachedir'] The path to the folder where cache files should be stored
+|	['char_set'] The character set used in communicating with the database
+|	['dbcollat'] The character collation used in communicating with the database
+|				 NOTE: For MySQL and MySQLi databases, this setting is only used
+| 				 as a backup if your server is running PHP < 5.2.3 or MySQL < 5.0.7
+|				 (and in table creation queries made with DB Forge).
+| 				 There is an incompatibility in PHP with mysql_real_escape_string() which
+| 				 can make your site vulnerable to SQL injection if you are using a
+| 				 multi-byte character set and are running versions lower than these.
+| 				 Sites using Latin-1 or UTF-8 database character set and collation are unaffected.
+|	['swap_pre'] A default table prefix that should be swapped with the dbprefix
+|	['encrypt']  Whether or not to use an encrypted connection.
+|
+|			'mysql' (deprecated), 'sqlsrv' and 'pdo/sqlsrv' drivers accept TRUE/FALSE
+|			'mysqli' and 'pdo/mysql' drivers accept an array with the following options:
+|
+|				'ssl_key'    - Path to the private key file
+|				'ssl_cert'   - Path to the public key certificate file
+|				'ssl_ca'     - Path to the certificate authority file
+|				'ssl_capath' - Path to a directory containing trusted CA certificates in PEM format
+|				'ssl_cipher' - List of *allowed* ciphers to be used for the encryption, separated by colons (':')
+|				'ssl_verify' - TRUE/FALSE; Whether verify the server certificate or not
+|
+|	['compress'] Whether or not to use client compression (MySQL only)
+|	['stricton'] TRUE/FALSE - forces 'Strict Mode' connections
+|							- good for ensuring strict SQL while developing
+|	['ssl_options']	Used to set various SSL options that can be used when making SSL connections.
+|	['failover'] array - A array with 0 or more data for connections if the main should fail.
+|	['save_queries'] TRUE/FALSE - Whether to "save" all executed queries.
+| 				NOTE: Disabling this will also effectively disable both
+| 				$this->db->last_query() and profiling of DB queries.
+| 				When you run a query, with this setting set to TRUE (default),
+| 				CodeIgniter will store the SQL statement for debugging purposes.
+| 				However, this may cause high memory usage, especially if you run
+| 				a lot of SQL queries ... disable this to avoid that problem.
+|
+| The $active_group variable lets you choose which connection group to
+| make active.  By default there is only one group (the 'default' group).
+|
+| The $query_builder variables lets you determine whether or not to load
+| the query builder class.
+*/
+$active_group = 'default';
+$query_builder = TRUE;
+
+$db['default'] = array(
+	'dsn'	=> '',
+	'hostname' => 'localhost',
+	'username' => '',
+	'password' => '',
+	'database' => '',
+	'dbdriver' => 'mysqli',
+	'dbprefix' => '',
+	'pconnect' => FALSE,
+	'db_debug' => (ENVIRONMENT !== 'production'),
+	'cache_on' => FALSE,
+	'cachedir' => '',
+	'char_set' => 'utf8',
+	'dbcollat' => 'utf8_general_ci',
+	'swap_pre' => '',
+	'encrypt' => FALSE,
+	'compress' => FALSE,
+	'stricton' => FALSE,
+	'failover' => array(),
+	'save_queries' => TRUE
+);
+
+
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+/*
+| -------------------------------------------------------------------------
+| URI ROUTING
+| -------------------------------------------------------------------------
+| This file lets you re-map URI requests to specific controller functions.
+|
+| Typically there is a one-to-one relationship between a URL string
+| and its corresponding controller class/method. The segments in a
+| URL normally follow this pattern:
+|
+|	example.com/class/method/id/
+|
+| In some instances, however, you may want to remap this relationship
+| so that a different class/function is called than the one
+| corresponding to the URL.
+|
+| Please see the user guide for complete details:
+|
+|	https://codeigniter.com/userguide3/general/routing.html
+|
+| -------------------------------------------------------------------------
+| RESERVED ROUTES
+| -------------------------------------------------------------------------
+|
+| There are three reserved routes:
+|
+|	$route['default_controller'] = 'welcome';
+|
+| This route indicates which controller class should be loaded if the
+| URI contains no data. In the above example, the "welcome" class
+| would be loaded.
+|
+|	$route['404_override'] = 'errors/page_missing';
+|
+| This route will tell the Router which controller/method to use if those
+| provided in the URL cannot be matched to a valid route.
+|
+|	$route['translate_uri_dashes'] = FALSE;
+|
+| This is not exactly a route, but allows you to automatically route
+| controller and method names that contain dashes. '-' isn't a valid
+| class or method name character, so it requires translation.
+| When you set this option to TRUE, it will replace ALL dashes in the
+| controller and method URI segments.
+|
+| Examples:	my-controller/index	-> my_controller/index
+|		my-controller/my-method	-> my_controller/my_method
+*/
+$route['default_controller'] = 'welcome';
+$route['404_override'] = '';
+$route['translate_uri_dashes'] = FALSE;
+<!-- Footer -->
+<script>
+      function initMap() {
+        var directionsService = new google.maps.DirectionsService;
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 7,
+          center: {lat: 41.0082, lng: 28.9784}
+
+        });
+        directionsDisplay.setMap(map);
+
+        var onChangeHandler = function() {
+          calculateAndDisplayRoute(directionsService, directionsDisplay);
+        };
+        document.getElementById('start').addEventListener('change', onChangeHandler);
+        document.getElementById('end').addEventListener('change', onChangeHandler);
+      }
+
+      function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+        directionsService.route({
+          origin: document.getElementById('start').value,
+          destination: document.getElementById('end').value,
+          travelMode: 'DRIVING'
+        }, function(response, status) {
+          if (status === 'OK') {
+            directionsDisplay.setDirections(response);
+          } else {
+            window.alert('Directions request failed due to ' + status);
+          }
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClyrDoeEHtaNe7yIp0hHI1H5nlf7MPkjc&callback=initMap">
+    </script>
+  </body>
+</html>
+<footer class="footer">
+        <div class="container">
+            <div class="row" id="footer-row">
+                <div class="col-12 col-lg-6">
+                    <img class="footer-logo" src="<?php  echo base_url() ?>assets/media/logo_acikbeyaz.png" alt="footer-logo">
+                    <p class="footer-text">Umuttepe Turizm, doğanın huzur verici kollarında keşif ve maceraya adım
+                        atanların rotasıdır. Yemyeşil ormanlarla çevrili, tarih ve kültür mirasını bünyesinde barındıran
+                        bu benzersiz bölge, ziyaretçilerine unutulmaz bir deneyim sunar. Umuttepe Turizm, konforlu
+                        konaklama seçenekleri, lezzetli yerel yemekler ve etkileyici doğal güzellikleriyle her
+                        ziyaretçisine kendini özel hissettirir. Burada, ruhunuzu dinlendirirken aynı zamanda maceraya
+                        atılma fırsatını bulacaksınız. Umuttepe Turizm Sitesi, hayallerinizi gerçeğe dönüştürmek için
+                        sizleri bekliyor.
+                    </p>
+                </div>
+
+                <div class="col-12 col-lg-6 ">
+                    <center>
+                        <h6 class="footer-header">
+                            Hızlı Linkler
+                        </h6>
+
+                        <ul class="footer-links">
+                            <li class="list-items"><a class="footer-nav" id="active-nav" href="<?php  echo base_url() ?>index.php">Ana
+                                    Sayfa</a>
+                            </li>
+                            <li class="list-items"><a class="footer-nav" href="<?php  echo base_url() ?>/home/gallery">Bilet Al</a></li>
+                            <li class="list-items"><a class="footer-nav" href="<?php  echo base_url() ?>/home/about">Hakkımızda</a></li>
+                            <li class="list-items"><a class="footer-nav" href="<?php  echo base_url() ?>/home/amenities">Yardım</a></li>
+                            <li class="list-items"><a class="footer-nav" href="<?php  echo base_url() ?>/home/contacts">İletişim</a></li>
+                            <li class="list-items"><a class="footer-nav" href="<?php  echo base_url() ?>/home/faqs">SSS</a></li>
+                            <li class="list-items"><a class="footer-nav" href="<?php  echo base_url() ?>/home/login">Giriş Yap</a></li>
+                            <li class="list-items"><a class="footer-nav" href="<?php  echo base_url() ?>/home/register">KAyıt Ol</a></li>
+                        </ul>
+                    </center>
+
+                </div>
+
+
+
+            </div>
+
+            <!-- copyright -->
+            <div class="row" id="copyright-row">
+                <div class="col-12" id="copyright-col">
+                    <p class="copyright-text">
+                        Umuttepe Turizm &copy; <span id="year"></span> All Rights Reserved.<br><i> Powered By
+                            Boostrap</i>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer End -->
+    <!-- Back to top button -->
+    <!--Sayfada aşağıya indikçe sağ altta çıkan buton, sayfanın en üstüne çıkmayı sağlar.-->
+    <button type="button" class="btn btn-danger btn-floating btn-lg" id="btn-back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+
+    <!-- JS -->
+    <script src="<?php  echo base_url() ?>assets/js/index.js"></script>
+
+
+</body>
+
+</html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Umuttepe Turizm</title>
+    <meta name="keywords"
+        content="Gordon Resort Hotel Abraka, Gordon Resort Hotel, McCarthy Beach, Beaches in Delta state, Beaches in Nigeria, beaches in Africa, beaches near me" />
+    <meta name="description"
+        content=" Gordon Resort Hotel popularly known as McCarthy Beach is located in the University town of Abraka in Delta State. It is famous for its Natural white sandy Beach and serene environment." />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C1EVRTK6PD"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-C1EVRTK6PD');
+    </script>
+
+    <!-- Google Tag Manager -->
+    <script>
+    (function(w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start': new Date().getTime(),
+            event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-NSMS76N');
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="<?php  echo base_url() ?>assets/bootstrap/css/bootstrap.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="<?php  echo base_url() ?>assets/css/style.css">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="<?php  echo base_url() ?>assets/media/favicon.png" type="image/x-icon">
+
+    <!-- Favicon -->
+    <script src="https://kit.fontawesome.com/344589b924.js" crossorigin="anonymous"></script>
+
+    <!-- Semantic UI CDN -->
+    <link
+        href="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.css"
+        rel="stylesheet" type="text/css" />
+
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+    <script
+        src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js">
+    </script>
+            <link rel=”canonical” href="" />
+        <meta name="description" />        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+        <link rel="stylesheet" href="<?php  echo base_url() ?>/assets/static/css/site.css" />    
+        <link rel="stylesheet" href="<?php  echo base_url() ?>/assetsstatic/css/wild-wide-theme.css" />
+
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+        <script src="static/vendors/vue/vue.js" type="text/javascript"></script>
+    
+        <style>.cls-selected{fill:green;stroke:#000;stroke-miterlimit:10;}</style>
+        <style>.cls-ra{fill:#fff;stroke:#000;stroke-miterlimit:10;}</style>
+        <style>.cls-rb{fill:gray;stroke:#000;stroke-miterlimit:10;}</style>    
+        <style>.cls-fa{fill:#fff;stroke:red;stroke-miterlimit:10;}</style>
+        <style>.cls-fb{fill:pink;stroke:red;stroke-miterlimit:10;}</style>    
+        <style>.cls-ma{fill:#fff;stroke:blue;stroke-miterlimit:10;}</style>
+        <style>.cls-mb{fill:royalblue;stroke:blue;stroke-miterlimit:10;}</style>
+    <style>
+    #harita {
+        border-style: solid;
+        border-width: 2px;
+        border-color: #000000;
+        border-radius: 10px;
+    }
+    </style>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      
+      #floating-panel {
+        position: absolute;
+        top: 10px;
+        left: 25%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+      }
+    </style>
+
+</head>
+
+<body>
+    <?php  
+        session_start();
+    ?>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NSMS76N" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Header Navigation -->
+    <nav>
+        <div class="container">
+            <div class="row">
+                <header class="header">
+                    <div class="header-left">
+                        <a href="<?php  echo base_url() ?>home/index">
+                            <img class="logo" src="<?php  echo base_url() ?>assets/media/logo_acikbeyaz.png" alt="grh-logo">
+                        </a>
+                    </div>
+
+                    <div class="header-right">
+                        <div class="nav-menu" id="navi-menu">
+                            <ul class="nav-items">
+                                <li class="list-items">
+                                    <a class="header-link" href="<?php  echo base_url() ?>home/index">Ana Sayfa</a>
+                                </li>
+                                <li class="list-items">
+                                    <a class="header-link" href="<?php  echo base_url() ?>home/gallery">Bilet Al</a>
+                                </li>
+                                <li class="list-items">
+                                    <a class="header-link" href="<?php  echo base_url() ?>home/about">Hakkımızda</a>
+                                </li>
+                                <li class="list-items">
+                                    <a class="header-link" href="<?php  echo base_url() ?>home/amenities">Yardım</a>
+                                </li>
+                                <li class="list-items">
+                                    <a class="header-link" href="<?php  echo base_url() ?>home/contacts">İletişim</a>
+                                </li>
+
+                                <li class="list-items">
+                                    <a class="header-link" href="<?php  echo base_url() ?>home/faqs">SSS</a>
+                                </li>
+                            </ul>
+                            <div class="vertical"></div>
+
+                            <?php
+                            
+                                if(isset($_SESSION['giris']) && $_SESSION['giris'] == true) { ?>
+                            <button class="head-btn" onclick="window.location.href ='<?php  echo base_url() ?>home/account'">
+                                Hesabım
+                            </button>
+                            <?php }
+                            else {  ?>
+
+                            <button class="head-btn" onclick="window.location.href ='<?php  echo base_url() ?>home/login'">
+                                Giriş
+                            </button>
+
+                            <button class="head-btn" onclick="window.location.href = '<?php  echo base_url() ?>/home/register'">
+                                Kayıt Ol
+                            </button>
+                            <?php
+                            } ?>
+
+                        </div>
+
+                        <!-- Mobile Menu / Mobile için menu -->
+                        <div class="mobile-menu" id="hamburger">
+                            <i id="openMenu" class="fa-solid fa-bars fa-2xl" style="color: #2c333d;"></i>
+                            <i id="closeMenu" class="hide fa-solid fa-x fa-2xl " style="color: #2c333d;"></i>
+                        </div>
+                    </div>
+                </header>
+            </div>
+        </div>
+    </nav>
+    <!-- End Header -->
+
+
+    <!-- Breadcrumb -->
+    <section class="breadcrumb-section">
+        <div class="container" id="breadcrumb-cont">
+            <div class="row" id="breadcrumb-row">
+                <div class="col-12" id="breadcrumb-col">
+                    <h1 class="page-title">Hakkımızda</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- End Breadcrumb -->
+
+    <!-- About section -->
+    <section class="about-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-6" id="left-abt-col">
+                    <img class="split-images" src="<?php  echo base_url() ?>assets/media/Outdoors/cut-images/image_part_001.jpg" alt="" />
+                    <img class="split-images" src="<?php  echo base_url() ?>assets/media/Outdoors/cut-images/image_part_002.jpg" alt="" />
+                    <img class="split-images" src="<?php  echo base_url() ?>assets/media/Outdoors/cut-images/image_part_003.jpg" alt="" />
+                </div>
+                <div class="col-12 col-md-6" id="right-abt-col">
+                    <h2 class="header-h2">HAKKIMIZDA</h2>
+
+                    <p class="about-text-parag">
+                        Firmamız, seyahat endüstrisinde köklü bir geçmişe sahip olan öncü
+                        bir şirkettir. Yıllar boyunca edindiğimiz deneyim ve birikimle,
+                        müşterilerimize en iyi seyahat deneyimini sunmak için çalışıyoruz.
+                        Amacımız, seyahat tutkunlarına unutulmaz anlar yaşatmak ve
+                        yolculuklarını keyifli hale getirmektir. Müşterilerimizin güvenini
+                        kazanmak ve onların memnuniyetini sağlamak için çaba gösteriyoruz.
+                    </p>
+                    <h2 class="header-h2">VİSYONUMUZ</h2>
+                    <p class="about-text-parag">
+                        Vizyonumuz, seyahat deneyimlerini dönüştürmek ve müşterilerimize
+                        unutulmaz anlar yaşatmak için sürekli olarak yenilikçi çözümler
+                        sunmaktır. Müşteri odaklı bir yaklaşımla hareket ederek, seyahat
+                        sektöründe öncü bir marka olmayı hedefliyoruz.
+                    </p>
+                    <h2 class="header-h2">MİSYONUMUZ</h2>
+                    <p class="about-text-parag">
+                        Misyonumuz, müşterilerimize güvenli, konforlu ve uygun fiyatlı
+                        seyahat deneyimleri sunarak onların memnuniyetini sağlamaktır.
+                        Yolcularımızın güvenliğini ve konforunu her zaman ön planda
+                        tutarak, seyahatlerini keyifli ve sorunsuz bir şekilde
+                        geçirmelerini sağlamak için çalışıyoruz. Müşteri memnuniyetini en
+                        üst düzeyde tutarak, seyahat endüstrisinde öncü bir rol oynamayı
+                        amaçlıyoruz.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- About Section end-->
+
+    
+
+   <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <?php
+session_start();
+  echo $_SESSION["email"];
+  echo $_SESSION["parola"];
+?>
+
+<button></button>
+</body>
+
+</html>
+
+
+    <!-- Breadcrumb -->
+    <section class="breadcrumb-section">
+        <div class="container" id="breadcrumb-cont">
+            <div class="row" id="breadcrumb-row">
+                <div class="col-12" id="breadcrumb-col">
+                    <h1 class="page-title">Yardım</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- End Breadcrumb -->
+
+    <!-- Amenities section -->
+    <section class="amenities-section">
+        <div class="container">
+            <!-- Beach -->
+            <div class="row" id="amenities-row">
+                <div class="col-12 col-lg-6 order2" id="left-abt-col">
+                    <img class="amenities-imgs"
+                        src="https://media.istockphoto.com/id/614316294/tr/foto%C4%9Fraf/white-bus-driving-along-the-asphalt-road-at-sunset.jpg?s=612x612&w=0&k=20&c=pSZqPL9bb_86jNNPjsISaRB55glgqc-tgos6LTxLT_A="
+                        alt="mcccarthy-beach" />
+                </div>
+                <div class="col-12 col-lg-6 order1" id="right-abt-col">
+                    <h2 class="header-h2">HİZMETLERİMİZ</h2>
+                    <p class="text-parag">
+                        Seyahat deneyimini daha konforlu ve keyifli hale getirmek için
+                        geniş bir hizmet yelpazesi sunuyoruz. Modern ve güvenli otobüs
+                        filomuzla, müşterilerimize rahat bir yolculuk imkanı sağlıyoruz.
+                        Esnek rezervasyon seçenekleri ve kolay kullanımlı online
+                        platformumuzla, müşterilerimizin rezervasyon işlemlerini sorunsuz
+                        bir şekilde tamamlamalarını sağlıyoruz.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Restaurant -->
+            <div class="row" id="amenities-row">
+                <div class="col-12 col-lg-6" id="left-abt-col">
+                    <h2 class="header-h2">EKİBİMİZ</h2>
+                    <p class="text-parag">
+                        Ekibimiz, sektörde uzun yılların deneyimine sahip, tutkulu ve
+                        profesyonel bireylerden oluşmaktadır. Her bir ekibimiz üyesi,
+                        müşteri memnuniyetini en üst düzeyde tutarak işlerini büyük bir
+                        özveriyle sürdürmektedir. Müşterilerimizin ihtiyaçlarını anlamak
+                        ve en iyi hizmeti sunmak için bir araya gelmiş olan ekibimiz, her
+                        zaman en iyisini yapmaya kararlıdır.
+                    </p>
+                </div>
+                <div class="col-12 col-lg-6" id="right-abt-col">
+                    <img class="amenities-imgs"
+                        src="https://www.setra-bus.com/content/dam/sbo/markets/el_GR/brand/setraworld-magazine/images/teaser/setra-reveal-final-01-en.jpg"
+                        alt="GRH-Restaurant" />
+                </div>
+            </div>
+
+            </section>s
+<!-- Breadcrumb -->
+    <section class="breadcrumb-section">
+        <div class="container" id="breadcrumb-cont">
+            <div class="row" id="breadcrumb-row">
+                <div class="col-12" id="breadcrumb-col">
+                    <h1 class="page-title">İLETİŞİM</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- End Breadcrumb -->
+
+    <!-- contact section -->
+    <section class="about-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-6" id="left-abt-col">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12085.439633849706!2d29.9742543!3d40.7761011!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cb5020aa964337%3A0xec05577e181f8e89!2sIzmit%20%C5%9Eehirlerarasi%20Otob%C3%BCs%20Terminali!5e0!3m2!1str!2str!4v1709588703152!5m2!1str!2str"
+                        width="600" height="450" style="border: 0" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <div class="col-12 col-md-6" id="right-abt-col">
+                    <h2 class="header-h2">İletişim Bilgileri</h2>
+
+                    <ul class="contact-info-ul">
+                        <li class="contact-info">
+                            <i class="fa-solid fa-phone" style="color: #fbb03b"></i><a class="contact-link"
+                                href="tel:09157031699">+90 212 545 56 41</a>
+                        </li>
+                        <li class="contact-info">
+                            <i class="fa-solid fa-envelope" style="color: #fbb03b"></i><a class="contact-link"
+                                href="mailto:info@gordonresorthotel.com">info@umuttepeturizm.com</a>
+                        </li>
+                    </ul>
+
+                    <hr class="contact-hr" />
+
+                    <h2 class="header-h2">Sosyal Medya</h2>
+
+                    <ul class="socials">
+                        <li class="contact-info">
+                            <a href="#" target="_blank"><i class="fa-brands fa-facebook fa-2x"
+                                    style="color: #fbb03b"></i></a>
+                        </li>
+                        <li class="contact-info">
+                            <a href="#" target="_blank">
+                                <i class="fa-brands fa-square-instagram fa-2x" style="color: #fbb03b"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- contact Section end-->
+
+    
+
+    <!-- Breadcrumb -->
+    <section class="breadcrumb-section">
+        <div class="container" id="breadcrumb-cont">
+            <div class="row" id="breadcrumb-row">
+                <div class="col-12" id="breadcrumb-col">
+                    <h1 class="page-title">Sıkça Sorulan Sorular</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- End Breadcrumb -->
+
+    <!-- Faqs section -->
+    <section class="about-section">
+        <div class="container">
+            <div class="row">
+                <div class="accordion-content">
+                    <!-- Beach FAQs -->
+                    <div>
+                        <input type="checkbox" id="questionbch" name="q" class="questions" />
+                        <div class="plus">+</div>
+                        <label for="questionbch" class="question">
+                            Site üzerinden nasıl otobüs bileti satın alabilirim?
+                        </label>
+                        <div class="answers">
+                            Bilet satın almak için ana sayfamızdaki arama kutusuna kalkış ve
+                            varış noktalarını, tarih ve yolcu sayısını girin. Ardından,
+                            uygun seferleri listeleyen bir sonuç sayfasına
+                            yönlendirileceksiniz. Buradan istediğiniz seferi seçip ödeme
+                            işlemini tamamlayabilirsiniz.
+                        </div>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" id="questionbch1" name="q" class="questions" />
+                        <div class="plus">+</div>
+                        <label for="questionbch1" class="question">
+                            Bilet iptali yapabilir miyim?
+                        </label>
+                        <div class="answers">
+                            Evet, bilet iptali yapabilirsiniz. Ancak, iptal kuralları ve
+                            iade politikalarımız hakkında daha fazla bilgi almak için lütfen
+                            "İptal ve İade Koşulları" sayfamızı ziyaret edin.
+                        </div>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" id="question9" name="q" class="questions" />
+                        <div class="plus">+</div>
+                        <label for="question9" class="question">
+                            İndirimli biletleriniz var mı?
+                        </label>
+                        <div class="answers">
+                            Öğrenci, Yaşlı, Çocuk ve Memur kullanıcılar için %15; Güvenlik
+                            güçleri için %100 indirimimiz var.
+                        </div>
+                    </div>
+
+                    <!-- Beach FAQS End -->
+
+                    <!-- Rooms FAQS-->
+
+                    <div>
+                        <input type="checkbox" id="questionRM" name="q" class="questions" />
+                        <div class="plus">+</div>
+                        <label for="questionRM" class="question">
+                            Hangi ödeme yöntemlerini kabul ediyorsunuz?
+                        </label>
+                        <div class="answers">
+                            Kredi kartları, banka kartları ve çeşitli dijital ödeme
+                            yöntemlerini kabul ediyoruz. Ödeme yöntemleri hakkında daha
+                            fazla bilgi için lütfen ödeme sayfamızı ziyaret edin.
+                        </div>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" id="questionRM0" name="q" class="questions" />
+                        <div class="plus">+</div>
+                        <label for="questionRM0" class="question">
+                            Biletimi nasıl değiştirebilirim?
+                        </label>
+                        <div class="answers">
+                            Bilet değişikliği yapmak istiyorsanız, lütfen çağrı merkezimizle
+                            iletişime geçin veya rezervasyonunuzu online olarak
+                            yönetebileceğiniz üyelik hesabınızı kullanın.
+                        </div>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" id="questionRM1" name="q" class="questions" />
+                        <div class="plus">+</div>
+                        <label for="questionRM1" class="question">
+                            Seferlerde gecikme durumunda ne yapmalıyım?
+                        </label>
+                        <div class="answers">
+                            Seferlerde gecikme durumunda size en kısa sürede bilgi verilecek
+                            ve gereken yardımı sağlayacağız. Lütfen bizi arayarak veya
+                            müşteri hizmetlerimizle iletişime geçerek daha fazla bilgi alın.
+                        </div>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" id="questionRM2" name="q" class="questions" />
+                        <div class="plus">+</div>
+                        <label for="questionRM2" class="question">
+                            Bilet alırken hangi bilgileri sağlamalıyım?
+                        </label>
+                        <div class="answers">
+                            Bilet satın alırken, yolcu bilgileri (ad, soyadı, TC kimlik
+                            numarası vb.), iletişim bilgileri ve tercihlerinizi sağlamanız
+                            gerekmektedir.
+                        </div>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" id="questionRM3" name="q" class="questions" />
+                        <div class="plus">+</div>
+                        <label for="questionRM3" class="question">
+                            Yolculuk sırasında bagaj hakkım nedir?
+                        </label>
+                        <div class="answers">
+                            Bagaj hakkı, seyahat edilen mesafe ve bilet türüne göre
+                            değişebilir. Bagaj politikamız hakkında daha fazla bilgi almak
+                            için lütfen web sitemizi ziyaret edin veya müşteri
+                            hizmetlerimizle iletişime geçin.
+                        </div>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" id="questionRM4" name="q" class="questions" />
+                        <div class="plus">+</div>
+                        <label for="questionRM4" class="question">
+                            Otobüs seferlerinde hangi hizmetler mevcut?
+                        </label>
+                        <div class="answers">
+                            Seferlere göre değişmekle birlikte, genellikle konforlu
+                            koltuklar, hizmetli hizmeti, kablosuz internet, ikramlar gibi
+                            hizmetler sunuyoruz. Daha fazla bilgi için sefer detaylarını
+                            inceleyin veya müşteri hizmetlerimizle iletişime geçin.
+                        </div>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" id="questionRM5" name="q" class="questions" />
+                        <div class="plus">+</div>
+                        <label for="questionRM5" class="question">
+                            Acil durumlar için kiminle iletişime geçmeliyim?
+                        </label>
+                        <div class="answers">
+                            Acil durumlarda, lütfen bizi hemen arayın veya seyahat
+                            görevlimizle iletişime geçin. Acil durum numaramız 24/7 hizmet
+                            vermektedir ve size gereken desteği sağlayacaktır.
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+        <br /><br />
+        <section class="rooms-n-suites">
+            <div class="container" style="margin-top: 100px">
+                <div class="col-12" id="innerPageHeading"></div>
+                <!-- Cottage -->
+                <div class="row" id="room-row">
+                    <div class="col-12 col-lg-6" id="left-room-col">
+                        <div id="harita" class="col">
+                            <br />
+                            <div class="row">
+                                <center>
+                                    <div class="col-3 offset-2">
+                                        <select id="start" class="form-select form-select-sm">
+                                            <option value="istanbul">İstanbul</option>
+                                            <option value="bursa">Bursa</option>
+                                            <option value="kocaeli">Kocaeli</option>
+                                            <option value="sakarya">Sakarya</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-3 offset-1">
+                                        <select id="end" class="form-select form-select-sm">
+                                            <option value="istanbul">İstanbul</option>
+                                            <option value="bursa">Bursa</option>
+                                            <option value="kocaeli">Kocaeli</option>
+                                            <option value="sakarya">Sakarya</option>
+                                        </select>
+                                    </div>
+                                </center>
+                            </div>
+
+                            <br />
+                            <center>
+                                <div style="height: 300px; width: 500px" id="map"></div>
+                            </center>
+
+                            <br />
+                        </div>
+                    
+                <br /><br />
+                
+                <!-- Replace YOUR_API_KEY with your actual Google Maps API key -->
+                <script async defer
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClyrDoeEHtaNe7yIp0hHI1H5nlf7MPkjc&callback=initMap">
+                </script>
+
+                
+
+                <!-- Back to top button -->
+                <button type="button" class="btn btn-danger btn-floating btn-lg" id="btn-back-to-top">
+                    <i class="fas fa-arrow-up"></i>
+                </button>
+
+                <!-- JS -->
+                <script src="<?php  echo base_url() ?>assets/js/index.js"></script>
+
+                <script src="<?php  echo base_url() ?>assets/bootstrap/js/bootstrap.bundle.min.js"
+                    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+                    crossorigin="anonymous"></script>
+            </div>
+            
+        </section>
+        <div id="root">
+            <div class="container">
+                <div class="row">                                        
+                    <div class="col-8 py-5">
+                        <div>
+                            <table class="mx-auto">
+                                <tr v-for="idxr, r in rows">
+                                    <td v-for="idxc, c in cols" class="pl-2" style="width: 50px">
+                                        <svg @click="onSeatSelected(idxr, idxc)" 
+                                             v-if="!isAisle(idxr, idxc)" 
+                                             id="Layer_1" data-name="Layer 1" 
+                                             xmlns="http://www.w3.org/2000/svg" 
+                                             viewBox="0 0 100 100">
+                                            <path :class="classifier(idxr, idxc)" d="M36,17.3H80.4a8.88,8.88,0,0,1,6.72-7.25A5.77,5.77,0,0,0,81.57,6H36a5.72,5.72,0,0,0-5.76,5.66A5.71,5.71,0,0,0,36,17.3Z"/>
+                                            <path :class="classifier(idxr, idxc)" d="M80.29,82.79H36A5.66,5.66,0,1,0,36,94.1H81.47a6.13,6.13,0,0,0,5.44-3.41A8.77,8.77,0,0,1,80.29,82.79Z"/>
+                                            <path :class="classifier(idxr, idxc)" d="M80.08,79.7V20.5H35.92A8.85,8.85,0,0,1,27.17,13h-18a4,4,0,0,0-4.06,4V82.79a4,4,0,0,0,4.06,3.95H27.28a8.65,8.65,0,0,1,8.75-7Z"/>
+                                            <path :class="classifier(idxr, idxc)" d="M89.15,12.93a5.71,5.71,0,0,0-5.76,5.65V82.15a5.76,5.76,0,0,0,11.52,0V18.58A5.71,5.71,0,0,0,89.15,12.93Z"/>
+                                            <path :class="classifier(idxr, idxc)" d="M90.21,9.94a8.93,8.93,0,0,0-8.74-7H36a8.94,8.94,0,0,0-8.75,6.93H9.15A7.22,7.22,0,0,0,2,17V82.79a7.06,7.06,0,0,0,7.15,7h18a8.85,8.85,0,0,0,8.75,7.26H81.47A8.91,8.91,0,0,0,90,90.9a8.81,8.81,0,0,0,8-8.75V18.58A8.84,8.84,0,0,0,90.21,9.94ZM36,6H81.57a5.77,5.77,0,0,1,5.55,4.06A8.88,8.88,0,0,0,80.4,17.3H36a5.71,5.71,0,0,1-5.76-5.65A5.72,5.72,0,0,1,36,6ZM27.28,86.74H9.15a4,4,0,0,1-4.06-3.95V17a4,4,0,0,1,4.06-4h18a8.85,8.85,0,0,0,8.75,7.47H80.08V79.7H36A8.65,8.65,0,0,0,27.28,86.74ZM81.47,94.1H36a5.66,5.66,0,1,1,0-11.31H80.29a8.77,8.77,0,0,0,6.62,7.9A6.13,6.13,0,0,1,81.47,94.1ZM94.91,82.15a5.76,5.76,0,0,1-11.52,0V18.58a5.76,5.76,0,0,1,11.52,0Z"/>
+                                        </svg>
+                                    </td>
+                                </tr>                                
+                            </table>                          
+                        </div>
+                    </div>
+                    <div class="col-4 pt-3">
+                        <div class="card" v-show="selectedSeat != null" style="display: none">
+                            <div class="card-header">
+                                Properties
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-group">
+                                    <li @click="changeSeatStatus('RA')" class="list-group-item" :class="seatStatus('RA')">                                                                                
+                                        <div class="float-left bg-white" style="width: 25px;">
+                                            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path class="cls-ra" d="M36,17.3H80.4a8.88,8.88,0,0,1,6.72-7.25A5.77,5.77,0,0,0,81.57,6H36a5.72,5.72,0,0,0-5.76,5.66A5.71,5.71,0,0,0,36,17.3Z"/><path class="cls-ra" d="M80.29,82.79H36A5.66,5.66,0,1,0,36,94.1H81.47a6.13,6.13,0,0,0,5.44-3.41A8.77,8.77,0,0,1,80.29,82.79Z"/><path class="cls-ra" d="M80.08,79.7V20.5H35.92A8.85,8.85,0,0,1,27.17,13h-18a4,4,0,0,0-4.06,4V82.79a4,4,0,0,0,4.06,3.95H27.28a8.65,8.65,0,0,1,8.75-7Z"/><path class="cls-ra" d="M89.15,12.93a5.71,5.71,0,0,0-5.76,5.65V82.15a5.76,5.76,0,0,0,11.52,0V18.58A5.71,5.71,0,0,0,89.15,12.93Z"/><path class="cls-ra" d="M90.21,9.94a8.93,8.93,0,0,0-8.74-7H36a8.94,8.94,0,0,0-8.75,6.93H9.15A7.22,7.22,0,0,0,2,17V82.79a7.06,7.06,0,0,0,7.15,7h18a8.85,8.85,0,0,0,8.75,7.26H81.47A8.91,8.91,0,0,0,90,90.9a8.81,8.81,0,0,0,8-8.75V18.58A8.84,8.84,0,0,0,90.21,9.94ZM36,6H81.57a5.77,5.77,0,0,1,5.55,4.06A8.88,8.88,0,0,0,80.4,17.3H36a5.71,5.71,0,0,1-5.76-5.65A5.72,5.72,0,0,1,36,6ZM27.28,86.74H9.15a4,4,0,0,1-4.06-3.95V17a4,4,0,0,1,4.06-4h18a8.85,8.85,0,0,0,8.75,7.47H80.08V79.7H36A8.65,8.65,0,0,0,27.28,86.74ZM81.47,94.1H36a5.66,5.66,0,1,1,0-11.31H80.29a8.77,8.77,0,0,0,6.62,7.9A6.13,6.13,0,0,1,81.47,94.1ZM94.91,82.15a5.76,5.76,0,0,1-11.52,0V18.58a5.76,5.76,0,0,1,11.52,0Z"/></svg>                                            
+                                        </div>                                        
+                                        <span class="px-3">Available</span>                                        
+                                    </li>
+                                    <li @click="changeSeatStatus('RB')" class="list-group-item" :class="seatStatus('RB')">
+                                        <div class="float-left" style="width: 25px;">
+                                            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path class="cls-rb" d="M36,17.3H80.4a8.88,8.88,0,0,1,6.72-7.25A5.77,5.77,0,0,0,81.57,6H36a5.72,5.72,0,0,0-5.76,5.66A5.71,5.71,0,0,0,36,17.3Z"/><path class="cls-rb" d="M80.29,82.79H36A5.66,5.66,0,1,0,36,94.1H81.47a6.13,6.13,0,0,0,5.44-3.41A8.77,8.77,0,0,1,80.29,82.79Z"/><path class="cls-rb" d="M80.08,79.7V20.5H35.92A8.85,8.85,0,0,1,27.17,13h-18a4,4,0,0,0-4.06,4V82.79a4,4,0,0,0,4.06,3.95H27.28a8.65,8.65,0,0,1,8.75-7Z"/><path class="cls-rb" d="M89.15,12.93a5.71,5.71,0,0,0-5.76,5.65V82.15a5.76,5.76,0,0,0,11.52,0V18.58A5.71,5.71,0,0,0,89.15,12.93Z"/><path class="cls-rb" d="M90.21,9.94a8.93,8.93,0,0,0-8.74-7H36a8.94,8.94,0,0,0-8.75,6.93H9.15A7.22,7.22,0,0,0,2,17V82.79a7.06,7.06,0,0,0,7.15,7h18a8.85,8.85,0,0,0,8.75,7.26H81.47A8.91,8.91,0,0,0,90,90.9a8.81,8.81,0,0,0,8-8.75V18.58A8.84,8.84,0,0,0,90.21,9.94ZM36,6H81.57a5.77,5.77,0,0,1,5.55,4.06A8.88,8.88,0,0,0,80.4,17.3H36a5.71,5.71,0,0,1-5.76-5.65A5.72,5.72,0,0,1,36,6ZM27.28,86.74H9.15a4,4,0,0,1-4.06-3.95V17a4,4,0,0,1,4.06-4h18a8.85,8.85,0,0,0,8.75,7.47H80.08V79.7H36A8.65,8.65,0,0,0,27.28,86.74ZM81.47,94.1H36a5.66,5.66,0,1,1,0-11.31H80.29a8.77,8.77,0,0,0,6.62,7.9A6.13,6.13,0,0,1,81.47,94.1ZM94.91,82.15a5.76,5.76,0,0,1-11.52,0V18.58a5.76,5.76,0,0,1,11.52,0Z"/></svg>                                        
+                                        </div>
+                                        <span class="px-3">Booked</span>                                        
+                                    </li>
+                                    <li @click="changeSeatStatus('FA')" class="list-group-item" :class="seatStatus('FA')">                                                                                
+                                        <div class="float-left" style="width: 25px;">
+                                            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path class="cls-fa" d="M36,17.3H80.4a8.88,8.88,0,0,1,6.72-7.25A5.77,5.77,0,0,0,81.57,6H36a5.72,5.72,0,0,0-5.76,5.66A5.71,5.71,0,0,0,36,17.3Z"/><path class="cls-fa" d="M80.29,82.79H36A5.66,5.66,0,1,0,36,94.1H81.47a6.13,6.13,0,0,0,5.44-3.41A8.77,8.77,0,0,1,80.29,82.79Z"/><path class="cls-fa" d="M80.08,79.7V20.5H35.92A8.85,8.85,0,0,1,27.17,13h-18a4,4,0,0,0-4.06,4V82.79a4,4,0,0,0,4.06,3.95H27.28a8.65,8.65,0,0,1,8.75-7Z"/><path class="cls-fa" d="M89.15,12.93a5.71,5.71,0,0,0-5.76,5.65V82.15a5.76,5.76,0,0,0,11.52,0V18.58A5.71,5.71,0,0,0,89.15,12.93Z"/><path class="cls-fa" d="M90.21,9.94a8.93,8.93,0,0,0-8.74-7H36a8.94,8.94,0,0,0-8.75,6.93H9.15A7.22,7.22,0,0,0,2,17V82.79a7.06,7.06,0,0,0,7.15,7h18a8.85,8.85,0,0,0,8.75,7.26H81.47A8.91,8.91,0,0,0,90,90.9a8.81,8.81,0,0,0,8-8.75V18.58A8.84,8.84,0,0,0,90.21,9.94ZM36,6H81.57a5.77,5.77,0,0,1,5.55,4.06A8.88,8.88,0,0,0,80.4,17.3H36a5.71,5.71,0,0,1-5.76-5.65A5.72,5.72,0,0,1,36,6ZM27.28,86.74H9.15a4,4,0,0,1-4.06-3.95V17a4,4,0,0,1,4.06-4h18a8.85,8.85,0,0,0,8.75,7.47H80.08V79.7H36A8.65,8.65,0,0,0,27.28,86.74ZM81.47,94.1H36a5.66,5.66,0,1,1,0-11.31H80.29a8.77,8.77,0,0,0,6.62,7.9A6.13,6.13,0,0,1,81.47,94.1ZM94.91,82.15a5.76,5.76,0,0,1-11.52,0V18.58a5.76,5.76,0,0,1,11.52,0Z"/></svg>                                        
+                                        </div>
+                                        <span class="px-3">Reserve for Female</span>
+                                    </li>
+                                    <li @click="changeSeatStatus('FB')" class="list-group-item" :class="seatStatus('FB')">                                                                                
+                                        <div class="float-left" style="width: 25px;">
+                                            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path class="cls-fb" d="M36,17.3H80.4a8.88,8.88,0,0,1,6.72-7.25A5.77,5.77,0,0,0,81.57,6H36a5.72,5.72,0,0,0-5.76,5.66A5.71,5.71,0,0,0,36,17.3Z"/><path class="cls-fb" d="M80.29,82.79H36A5.66,5.66,0,1,0,36,94.1H81.47a6.13,6.13,0,0,0,5.44-3.41A8.77,8.77,0,0,1,80.29,82.79Z"/><path class="cls-fb" d="M80.08,79.7V20.5H35.92A8.85,8.85,0,0,1,27.17,13h-18a4,4,0,0,0-4.06,4V82.79a4,4,0,0,0,4.06,3.95H27.28a8.65,8.65,0,0,1,8.75-7Z"/><path class="cls-fb" d="M89.15,12.93a5.71,5.71,0,0,0-5.76,5.65V82.15a5.76,5.76,0,0,0,11.52,0V18.58A5.71,5.71,0,0,0,89.15,12.93Z"/><path class="cls-fb" d="M90.21,9.94a8.93,8.93,0,0,0-8.74-7H36a8.94,8.94,0,0,0-8.75,6.93H9.15A7.22,7.22,0,0,0,2,17V82.79a7.06,7.06,0,0,0,7.15,7h18a8.85,8.85,0,0,0,8.75,7.26H81.47A8.91,8.91,0,0,0,90,90.9a8.81,8.81,0,0,0,8-8.75V18.58A8.84,8.84,0,0,0,90.21,9.94ZM36,6H81.57a5.77,5.77,0,0,1,5.55,4.06A8.88,8.88,0,0,0,80.4,17.3H36a5.71,5.71,0,0,1-5.76-5.65A5.72,5.72,0,0,1,36,6ZM27.28,86.74H9.15a4,4,0,0,1-4.06-3.95V17a4,4,0,0,1,4.06-4h18a8.85,8.85,0,0,0,8.75,7.47H80.08V79.7H36A8.65,8.65,0,0,0,27.28,86.74ZM81.47,94.1H36a5.66,5.66,0,1,1,0-11.31H80.29a8.77,8.77,0,0,0,6.62,7.9A6.13,6.13,0,0,1,81.47,94.1ZM94.91,82.15a5.76,5.76,0,0,1-11.52,0V18.58a5.76,5.76,0,0,1,11.52,0Z"/></svg>                                        
+                                        </div>
+                                        <span class="px-3">Reserve for Female - Booked</span>                                        
+                                    </li>
+                                    <li @click="changeSeatStatus('MA')" class="list-group-item" :class="seatStatus('MA')">                                                                                
+                                        <div class="float-left" style="width: 25px;">
+                                            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path class="cls-ma" d="M36,17.3H80.4a8.88,8.88,0,0,1,6.72-7.25A5.77,5.77,0,0,0,81.57,6H36a5.72,5.72,0,0,0-5.76,5.66A5.71,5.71,0,0,0,36,17.3Z"/><path class="cls-ma" d="M80.29,82.79H36A5.66,5.66,0,1,0,36,94.1H81.47a6.13,6.13,0,0,0,5.44-3.41A8.77,8.77,0,0,1,80.29,82.79Z"/><path class="cls-ma" d="M80.08,79.7V20.5H35.92A8.85,8.85,0,0,1,27.17,13h-18a4,4,0,0,0-4.06,4V82.79a4,4,0,0,0,4.06,3.95H27.28a8.65,8.65,0,0,1,8.75-7Z"/><path class="cls-ma" d="M89.15,12.93a5.71,5.71,0,0,0-5.76,5.65V82.15a5.76,5.76,0,0,0,11.52,0V18.58A5.71,5.71,0,0,0,89.15,12.93Z"/><path class="cls-ma" d="M90.21,9.94a8.93,8.93,0,0,0-8.74-7H36a8.94,8.94,0,0,0-8.75,6.93H9.15A7.22,7.22,0,0,0,2,17V82.79a7.06,7.06,0,0,0,7.15,7h18a8.85,8.85,0,0,0,8.75,7.26H81.47A8.91,8.91,0,0,0,90,90.9a8.81,8.81,0,0,0,8-8.75V18.58A8.84,8.84,0,0,0,90.21,9.94ZM36,6H81.57a5.77,5.77,0,0,1,5.55,4.06A8.88,8.88,0,0,0,80.4,17.3H36a5.71,5.71,0,0,1-5.76-5.65A5.72,5.72,0,0,1,36,6ZM27.28,86.74H9.15a4,4,0,0,1-4.06-3.95V17a4,4,0,0,1,4.06-4h18a8.85,8.85,0,0,0,8.75,7.47H80.08V79.7H36A8.65,8.65,0,0,0,27.28,86.74ZM81.47,94.1H36a5.66,5.66,0,1,1,0-11.31H80.29a8.77,8.77,0,0,0,6.62,7.9A6.13,6.13,0,0,1,81.47,94.1ZM94.91,82.15a5.76,5.76,0,0,1-11.52,0V18.58a5.76,5.76,0,0,1,11.52,0Z"/></svg>                                        
+                                        </div>
+                                        <span class="px-3">Reserve for Male</span>
+                                    </li>
+                                    <li @click="changeSeatStatus('MB')" class="list-group-item" :class="seatStatus('MB')">                                                                                
+                                        <div class="float-left" style="width: 25px;">
+                                            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path class="cls-mb" d="M36,17.3H80.4a8.88,8.88,0,0,1,6.72-7.25A5.77,5.77,0,0,0,81.57,6H36a5.72,5.72,0,0,0-5.76,5.66A5.71,5.71,0,0,0,36,17.3Z"/><path class="cls-mb" d="M80.29,82.79H36A5.66,5.66,0,1,0,36,94.1H81.47a6.13,6.13,0,0,0,5.44-3.41A8.77,8.77,0,0,1,80.29,82.79Z"/><path class="cls-mb" d="M80.08,79.7V20.5H35.92A8.85,8.85,0,0,1,27.17,13h-18a4,4,0,0,0-4.06,4V82.79a4,4,0,0,0,4.06,3.95H27.28a8.65,8.65,0,0,1,8.75-7Z"/><path class="cls-mb" d="M89.15,12.93a5.71,5.71,0,0,0-5.76,5.65V82.15a5.76,5.76,0,0,0,11.52,0V18.58A5.71,5.71,0,0,0,89.15,12.93Z"/><path class="cls-mb" d="M90.21,9.94a8.93,8.93,0,0,0-8.74-7H36a8.94,8.94,0,0,0-8.75,6.93H9.15A7.22,7.22,0,0,0,2,17V82.79a7.06,7.06,0,0,0,7.15,7h18a8.85,8.85,0,0,0,8.75,7.26H81.47A8.91,8.91,0,0,0,90,90.9a8.81,8.81,0,0,0,8-8.75V18.58A8.84,8.84,0,0,0,90.21,9.94ZM36,6H81.57a5.77,5.77,0,0,1,5.55,4.06A8.88,8.88,0,0,0,80.4,17.3H36a5.71,5.71,0,0,1-5.76-5.65A5.72,5.72,0,0,1,36,6ZM27.28,86.74H9.15a4,4,0,0,1-4.06-3.95V17a4,4,0,0,1,4.06-4h18a8.85,8.85,0,0,0,8.75,7.47H80.08V79.7H36A8.65,8.65,0,0,0,27.28,86.74ZM81.47,94.1H36a5.66,5.66,0,1,1,0-11.31H80.29a8.77,8.77,0,0,0,6.62,7.9A6.13,6.13,0,0,1,81.47,94.1ZM94.91,82.15a5.76,5.76,0,0,1-11.52,0V18.58a5.76,5.76,0,0,1,11.52,0Z"/></svg>                                        
+                                        </div>
+                                        <span class="px-3">Reserve for Male - Booked</span>                                        
+                                    </li>                                    
+                                </ul>                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">            
+            let app = new Vue({
+                el: "#root",
+                data: {
+                    errors: [],
+                    o: [],            
+                    selectedSeat: null,                    
+                    rows: 5,
+                    cols: 12,                    
+                    seats: [],                    
+                },
+                computed: {                    
+                },
+                methods:
+                {
+                    getSeat(r, c) {
+                        for(let i = 0; i < this.seats.length; ++i) {
+                            if(this.seats[i].position.r == r && this.seats[i].position.c == c) {
+                                return this.seats[i];                                
+                            }
+                        }
+                        return null;
+                    },
+                    generateSeats() {
+                        for(let y = 1; y <= this.rows; ++y){
+                            for(let x = 1; x <= this.cols; ++x) {
+                                if(!this.isAisle(y, x)) {
+                                    this.seats.push({
+                                        position: {r: y, c: x},                                        
+                                        status: "RA",
+                                    });
+                                }                                
+                            }
+                        }
+                    },
+                    classifier(r, c){
+                        let seat = this.getSeat(r,c);
+                        if(seat != null){
+                            if(this.selectedSeat != seat) {
+                                switch(seat.status) {
+                                    case 'RA':
+                                        return 'cls-ra';
+                                    case 'RB':
+                                        return 'cls-rb';                                    
+                                    case 'FA':
+                                        return 'cls-fa';                                    
+                                    case 'FB':
+                                        return 'cls-fb';
+                                    case 'MA':
+                                        return 'cls-ma';
+                                    case 'MB':
+                                        return 'cls-mb';
+                                    default:                                                                        
+                                        return 'cls-ra';                                                                    
+                                }
+                            } else {
+                                return 'cls-selected';
+                            }
+                        }                        
+                    },
+                    isAisle(r, c) {
+                        if(r == 3){
+                            if(c >= 1 && c <= 11) {
+                                return true;
+                            }
+                        }
+                        return false;
+                    },
+                    onSeatSelected(r,c) {   
+                        if(this.selectedSeat == this.getSeat(r, c)) {
+                            this.selectedSeat = null;
+                        } else {
+                            this.selectedSeat = this.getSeat(r, c);                            
+                        }
+                    },                    
+                    seatStatus(status){
+                        if(this.selectedSeat != null) {
+                            if(this.selectedSeat.status == status)
+                            return 'active';
+                        }
+                        return '';
+                    },
+                    changeSeatStatus(status) {                        
+                        if(this.selectedSeat != null) {                            
+                            for(let i = 0; i < this.seats.length; ++i) {
+                                if(this.seats[i].position.r == this.selectedSeat.position.r && this.seats[i].position.c == this.selectedSeat.position.c) {
+                                    this.seats[i].status = status;
+                                    this.selectedSeat = null;
+                                    break;
+                                }
+                            }                                                
+                        }
+                    },
+                },
+                beforeMount() {                    
+                },
+                mounted() {
+                    this.generateSeats();
+                }
+            });
+        </script>
+        
+<!-- hero section -->
+    <section class="hero-section">
+
+        <div class="container" id="hero-cont">
+            <div class="row" id="hero-row">
+                <div class="col-12" id="hero-col">
+                    <h1 class="hero-h1">Umuttepe Turizme Hoşgeldiniz </h1>
+
+                    <form class="home-search" action="<?php  echo base_url() ?>gallery.php">
+
+                        <div class="form-row">
+                            <i class="fa-solid fa-bus " style="color: #909090;"></i>
+                            <select class="form-select form-select-sm" aria-label=".form-select-sm example" required>
+                                <option value="" disabled selected hidden>Nereden</option>
+                                <option value="istanbul">İstanbul</option>
+                                <option value="bursa">Bursa</option>
+                                <option value="kocaeli">Kocaeli</option>
+                                <option value="sakarya">Sakarya</option>
+                            </select>
+                            <select class="form-select form-select-sm" aria-label=".form-select-sm example" required>
+                                <option value="" disabled selected hidden>Nereye</option>
+                                <option value="istanbul">İstanbul</option>
+                                <option value="bursa">Bursa</option>
+                                <option value="kocaeli">Kocaeli</option>
+                                <option value="sakarya">Sakarya</option>
+                            </select>
+                        </div>
+                        <br><br>
+                        <div class="ui calendar" id="date-1">
+                            <div class="ui input left icon">
+                                <i class="calendar icon"></i>
+                                <input type="text" class="calender-text" placeholder="Gidiş Tarihi" required>
+                            </div>
+                        </div>
+
+                        <div id="donusTarihDiv" style="display:none;">
+                            <div class="ui calendar" id="date-2">
+                                <div class="ui input left icon">
+                                    <i class="calendar icon"></i>
+                                    <input type="text" class="calender-text" placeholder="Geliş Tarihi" required>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="checkbox" id="donusCheckbox" name="donusCheckbox">
+                        <label for="donusCheckbox">
+                            <i>Dönüş Bileti Almak İstiyorum</i>
+                        </label>
+
+                        <script>
+                        // JavaScript ile dönüş tarih input'unun görünürlüğünü kontrol etme
+                        document.getElementById('donusCheckbox').addEventListener('change', function() {
+                            var donusTarihDiv = document.getElementById('donusTarihDiv');
+                            donusTarihDiv.style.display = this.checked ? 'block' : 'none';
+                            if (!this.checked) {
+                                document.getElementById('tarihDonus').value = ''; // Dönüş tarihini sıfırla
+                            }
+                        });
+                        </script>
+
+
+
+
+                        <div class="submit-search">
+                            <button id="submit-main-btn" class="submit" onclick="window.location.href = 'gallery.php';">
+                                <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
+                                <span class="hide-text-mobile">Arama</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+
+    
+    
+    <br><br>
+    <section class="vh-100" style="margin-top:100px">
+        <div class="container-fluid h-custom">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-md-9 col-lg-6 col-xl-5">
+                    <img src="https://www.pngall.com/wp-content/uploads/2016/05/Bus-PNG-File.png" class="img-fluid"
+                        alt="Sample image">
+                </div>
+                <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                    <form action="./registerislem.php" method="post">
+
+
+                        <div class="divider d-flex align-items-center my-4">
+                            <p class="text-center fw-bold mx-3 mb-0">Kayıt Ol</p>
+                        </div>
+
+                        <!-- Email input -->
+                        <div class="form-outline mb-4">
+                            <input type="email" id="form3Example3" class="form-control form-control-lg"
+                                placeholder="Email" name="email" />
+
+
+                        </div>
+                        <div class="form-outline mb-3">
+                            <input type="password" id="form3Example4" class="form-control form-control-lg"
+                                placeholder="Şifre" name="parola" />
+
+                        </div>
+                        <div class="form-outline mb-4">
+                            <input type="number" id="form3Example3" class="form-control form-control-lg"
+                                placeholder="TC/Pasaport numarası" min="0" max="100000000000" name="TCno" />
+
+                        </div>
+                        <div class="form-outline mb-4">
+                            <input type="number" id="form3Example3" class="form-control form-control-lg"
+                                placeholder="Telefon numarası" min="0" max="100000000000" name="Telno" />
+
+                        </div>
+                        <div class="form-outline mb-4">
+                            <input type="text" id="form3Example3" class="form-control form-control-lg"
+                                placeholder="İsim" name="isim" />
+                        </div>
+                        <div class="form-outline mb-4">
+                            <input type="text" id="form3Example3" class="form-control form-control-lg"
+                                placeholder="Soyisim" name="soyisim" />
+                        </div>
+                        <div class="form-outline mb-4">
+                            <input type="number" id="form3Example3" class="form-control form-control-lg"
+                                placeholder="Doğum Yılı" min="1920" max="2024" name="dogum" />
+
+                        </div>
+
+                        <div class="form-outline mb-4">
+                            <select class="form-control form-control-lg aria-label=" Default select example" name="cinsiyet" >
+                                <option selected value="belirsiz">Cinsiyet Seçiniz</option>
+                                <option value="erkek">Erkek</option>
+                                <option value="kadın">Kadın</option>
+                                
+                            </select>
+                        </div>
+                        <div class="form-outline mb-4">
+                            <select class="form-control form-control-lg aria-label=" Default select example" name="meslek" >
+                                <option selected value="diger">Meslek Seçiniz</option>
+                                <option value="memur">Memur</option>
+                                <option value="ogrenci">Öğrenci</option>
+                                <option value="emekli">Ememkli</option>
+                                <option value="asker">Askeri Personel</option>
+                                <option value="diger">Diğer</option>
+                            </select>
+                        </div>
+
+
+                        <!-- Password input -->
+
+
+
+
+                        <div class="text-center text-lg-start mt-4 pt-2">
+                            <button type="submit" class="btn btn-primary btn-lg" name="kayitol"
+                                style="padding-left: 2.5rem; padding-right: 2.5rem;" > kayıt </button>
+                            <p class="small fw-bold mt-2 pt-1 mb-0">Hesabın var mı? <a href="./login.php"
+                                    class="link-danger">Giriş Yap</a></p>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+
+   // Remove loader 3 seconds after website loads
+
+// function onloadPage () {
+//     setTimeout (() => {
+//     const pageHide = document.querySelector('.loader-div').style.display = "none";
+
+//     }, 2000);
+// }
+
+// document.onload = onloadPage ();
+
+
+// Onclick of navbar toggle repsonsive class
+function onMenuClick() {
+    var navbar = document.getElementById("navigation-bar");
+    var responsive_class_name = "responsive";
+
+    navbar.classList.toggle(responsive_class_name);
+}
+
+// const pageHide = document.querySelector('.loader-div');
+//   pageHide.classList.add(hide');
+
+const hamburger = document.getElementById("hamburger");
+const naviMenu = document.getElementById("navi-menu");
+const openMenu = document.getElementById("openMenu");
+const closeMenu = document.getElementById("closeMenu");
+
+
+  window.addEventListener('mouseup', function(event){
+
+    // On click of hamburger icons, toggle active menu and toggle hamburger classes
+    openMenu.addEventListener("click", function () {
+
+        
+        naviMenu.classList.add("active"); 
+        openMenu.classList.add("hide");
+        closeMenu.classList.remove("hide");
+        
+      });
+
+      closeMenu.addEventListener("click", function () {
+
+        
+        naviMenu.classList.remove("active"); 
+        openMenu.classList.remove("hide");
+        closeMenu.classList.add("hide");
+        
+      });
+
+
+    // Close menu and deactivate hamburger classes on click outside the menu
+    if (event.target != naviMenu ){
+        naviMenu.classList.remove("active"); //close menu
+        openMenu.classList.remove("hide");
+        closeMenu.classList.add("hide");
+    }
+
+    
+
+  });
+
+  
+
+    // //   Incrementor
+    
+    // const plus = document.querySelector(".plus"),
+    // minus = document.querySelector(".minus"),
+    // num = document.querySelector(".num");
+    // let a = 0;
+    // plus.addEventListener("click", ()=>{
+    //   a++;
+    //   a = (a < 10) ? + a : a;
+    //   num.innerText = a;
+    // });
+
+    // minus.addEventListener("click", ()=>{
+    //   if(a > 0){
+    //     a--;
+    //     a = (a < 10) ? + a : a;
+    //     num.innerText = a;
+    //   }
+    // });
+
+
+
+    // Date Picker
+
+
+    $('#date-1').calendar({
+      type: 'date'
+    });
+
+    $('#date-2').calendar({
+        type: 'date'
+      });
+    
+      // Video embed 
+      $('body')
+      .on('click', '.vimeo-launch', function () {
+        var videoID = $(this).data('vimeo-id'),
+            $video = '<div id="vimeo-pop-container"><div><span class="vimeo-close"></span><iframe src="https://player.vimeo.com/video/818039870?h=6a58613339&portrait=0&byline=0" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div></div>';
+        $('body').append($video);
+      } )
+      
+      .on('click', '.vimeo-close', function () {
+        $(this).addClass('closing');
+      
+        $('#vimeo-pop-container').delay(700).animate({
+          height: 0,
+          top: '50%'
+        }, 'fast', function () {
+          $('#vimeo-pop-container').remove();
+        });
+      } );
+
+
+      //   copyright get current year
+    document.getElementById("year").innerHTML = (new Date().getFullYear());
+
+
+  
+// Back to top Button
+const backToTopBtn = document.getElementById("btn-back-to-top");
+
+
+
+// When the user scrolls down 20px from the top of the document, display the hidden button
+
+function scrollFunction() {
+  if (
+    document.body.scrollTop > 20 ||
+    document.documentElement.scrollTop > 20
+  ) {
+    backToTopBtn.style.display = "block";
+  } else {
+    backToTopBtn.style.display = "none";
+  }
+}
+
+
+window.onscroll = function () {
+  scrollFunction();
+};
+
+// When the user clicks on the button, scroll to the top of the document
+backToTopBtn.addEventListener("click", backToTop);
+
+function backToTop() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+
+// form input function
+(function($){
+	function floatLabel(inputType){
+		$(inputType).each(function(){
+			var $this = $(this);
+			// on focus add cladd active to label
+			$this.focus(function(){
+				$this.next().addClass("active");
+			});
+			//on blur check field and remove class if needed
+			$this.blur(function(){
+				if($this.val() === '' || $this.val() === 'blank'){
+					$this.next().removeClass();
+				}
+			});
+		});
+	}
+	// just add a class of "floatLabel to the input field!"
+	floatLabel(".floatLabel");
+})(jQuery);
+
+
+
+// Cookies
+// Create cookie
+function setCookie(cname, cvalue, exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  let expires = "expires="+ d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+// Delete cookie
+function deleteCookie(cname) {
+  const d = new Date();
+  d.setTime(d.getTime() + (24*60*60*1000));
+  let expires = "expires="+ d.toUTCString();
+  document.cookie = cname + "=;" + expires + ";path=/";
+}
+
+// Read cookie
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+      }
+  }
+  return "";
+}
+
+// Set cookie consent
+function acceptCookieConsent(){
+  deleteCookie('user_cookie_consent');
+  setCookie('user_cookie_consent', 1, 30);
+  document.getElementById("cookieNotice").style.display = "none";
+}
+
+let cookie_consent = getCookie("user_cookie_consent");
+if(cookie_consent != ""){
+    document.getElementById("cookieNotice").style.display = "none";
+}else{
+    document.getElementById("cookieNotice").style.display = "block";
+}
+
+// Close cookie
+const closeCookie = document.getElementById("closeIcon");
+
+closeCookie.addEventListener("click", function(){
+  document.getElementById("cookieNotice").style.display = "none";
+});
+
+
+// recaptcha validation
+// document.getElementById("bookingForm").addEventListener("submit",function(evt)
+//   {
+  
+//   var response = grecaptcha.getResponse();
+//   if(response.length == 0) 
+//   { 
+//     //reCaptcha not verified
+//     alert("please verify you are human!"); 
+//     evt.preventDefault();
+//     return false;
+//   }
+  
+//   //captcha verified
+  
+  
+// });
+body {    
+    background-color: #f6f8fa;
+}
+
+/*#navbar-custom {
+    /*width: calc(100% - 250px);*/
+    /*width: 100%;
+    left: 250px;
+    right: 0;
+    transition: all 0.3s;
+}*/
+
+/*#navbar-custom.active {
+    width: 100%;
+    left: 0;
+    right: 0;
+}*/
+
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu a::after {
+    transform: rotate(-90deg);
+    position: absolute;
+    right: 10px;
+    top: .8em;
+}
+
+.dropdown-submenu .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-left: .1rem;
+    margin-right: .1rem;
+}
+
+/*@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+    #content {
+        width: 100%;
+    }
+    #content.active {
+        width: calc(100% - 250px);
+        left: 250px;
+    }
+    #navbar-custom {
+        width: 100%;
+        left: 250px;
+        transition: all 0.3s;
+    }
+    #navbar-custom.active {
+        width: calc(100% - 250px);
+        left: 0px;
+    }
+    #sidebarCollapse span {
+        display: none;
+    }
+}*/
+
+/*.navbar-brand {
+    position: relative;    
+    background: url(/static/img/logo-white.svg);
+    width: 170px;
+    left: 15px;
+    background-repeat: no-repeat;    
+    background-size: auto;    
+}*/
+
+.sticky-top-action-bar {
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 40px;
+    z-index: 100;
+}
+
+.sticky-top-context-bar {
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 40px;
+    z-index: 100;
+}
+
+.sticky-side-context-bar {
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 40px;
+}
+
+/*.container {
+    width: 970px !important;
+}*/
+
+/*.sidebar-and-main-wrapper {
+    display: flex;
+    width: 100%;
+}*/
+
+/*#sidebar {
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 999;
+    background-color: #323639;
+    color: #fff;
+    transition: all 0.3s;
+}
+
+#sidebar .sidebar-brand {
+    padding: 20px;
+    background-color: #323639;
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+}
+
+#sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 0.9em;
+    color: #ffffff;
+    display: block;
+}
+#sidebar ul li a:hover {
+    color: #323639;
+    background: #fff;
+}*/
+
+/*#sidebar ul li.selected > a, a[aria-expanded="true"] {
+    color: #ffffff;
+    background: #3236ff;
+}*/
+
+/*#sidebar.active {
+    margin-left: -250px;
+}*/
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+.custom-dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+/*#content {
+    /*width: calc(100% - 250px);*/
+    /*width: 100%;
+    padding: 90px 40px 100px 40px;
+    min-height: 100vh;
+    transition: all 0.3s;
+    position: absolute;
+    top: 0;
+    right: 0;
+}*/
+
+#content.active {
+    width: 100%;
+}
+
+.custom-modal-sm {
+    max-width: 80% !important;
+}
+
+.custom-modal-lg {
+    max-width: 80% !important;
+}
+
+.endpoint-list {
+    height: 70vh;
+}
+
+.endpoint-list-item {
+    cursor: pointer;
+}
+
+.endpoint-view-container {
+    height: 70vh;
+}
+
+video::-internal-media-controls-download-button {
+    display:none;
+}
+
+video::-webkit-media-controls-enclosure {
+    overflow:hidden;
+}
+
+video::-webkit-media-controls-panel {
+    width: calc(100% + 30px); /* Adjust as needed */
+}
+
+audio::-internal-media-controls-download-button {
+    display:none;
+}
+
+audio::-webkit-media-controls-enclosure {
+    overflow:hidden;
+}
+
+audio::-webkit-media-controls-panel {
+    width: calc(100% + 30px); /* Adjust as needed */
+}
