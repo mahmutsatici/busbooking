@@ -9,7 +9,7 @@
             <tr>
                 <th>#</th>
                 <th>Plaka</th>
-                <th>Guzergah</th>
+                
                 <th>Koltuk Tipi</th>
                 <th>Koltuk Sayısı</th>
                 <th>Action</th>
@@ -23,7 +23,7 @@
             <tr>
                 <td><?= $key+1 ?></td>
                 <td><?= $otobus["Plaka"] ?></td>
-                <td><?= $otobus["Guzergah"] ?></td>
+                
                 <td><?= $otobus["KoltukTipi"] ?></td>
                 <td><?= $otobus["KoltukSayisi"] ?></td>
                 <td><a href="<?php echo base_url("admin/delete_otobus/" . $otobus["OtobusID"]) ?>" class="btn btn-danger btn-sm">Delete</a> &nbsp; 
@@ -55,17 +55,22 @@
                     <label>Plaka: </label>
                     <input type="text" class="form-control" required name="Plaka" placeholder="Plaka Giriniz">
                 </div>
-                <div class="form-group">
-                    <label>Güzergah : </label>
-                    <input type="text" class="form-control" required name="Guzergah" placeholder="Güzergah Giriniz">
-                </div>
+                
                 <div class="form-group">
                     <label>Koltuk Tipi : </label>
-                    <input type="text" class="form-control" required name="KoltukTipi" placeholder="Koltuk Tipi Giriniz">
+                    <select class="form-control" required name="KoltukTipi" id="KoltukTipi">
+                      <option value="2+1">2+1</option>
+                      <option value="2+2">2+2</option>
+                      
+                    </select>
                 </div>
                 <div class="form-group">
                     <label>Koltuk Sayısı : </label>
-                    <input type="text" class="form-control" required name="KoltukSayisi" placeholder="Koltuk Sayısı Giriniz">
+                    <select class="form-control" required name="KoltukSayisi" id="KoltukSayisi">
+                      <option value="40">40</option>
+                      <option value="50">50</option>
+                      
+                    </select>
                 </div>
                 <div class="form-group">
                     

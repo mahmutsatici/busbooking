@@ -11,8 +11,10 @@
                 <th>Kalkis Yeri</th>
                 <th>Varıs Yeri</th>
                 <th>Otobus Plaka</th>
-                <th>Kalkış Yeri</th>
                 <th>Kalkış Saati</th>
+                <th>Varış Saati</th>
+                <th>Tarih</th>
+                <th>Fiyat</th>
                 <th>Action</th>
                 
             </tr>
@@ -25,9 +27,18 @@
                 <td><?= $key+1 ?></td>
                 <td><?= $sefer["KalkisYeri"] ?></td>
                 <td><?= $sefer["VarisYeri"] ?></td>
-                <td><?= $sefer["OtobusID"] ?></td>
-                <td><?= $sefer["VarisSaati"] ?></td>
-                <td><?= $sefer["KalkisSaati"] ?></td>
+                <td><?php 
+                foreach ($otobus as $key => $otobuss) { 
+                  if ($otobuss["OtobusID"]==$sefer["OtobusID"]) {
+                    echo $otobuss["Plaka"];
+                  }
+                }
+              ?></td>
+              <td><?= $sefer["KalkisSaati"] . ".00"?></td>
+              <td><?= $sefer["VarisSaati"] . ".00" ?></td>
+              <td><?= $sefer["Tarih"]?></td>
+              <td><?= $sefer["Fiyat"] . " TL"?></td>
+                
                 
                 
                 <td><a href="<?php echo base_url("admin/delete_sefer/" . $sefer["SeferID"]) ?>" class="btn btn-danger btn-sm">Sil</a> &nbsp; 
@@ -47,7 +58,7 @@
           <div class="modal-content">
             <div class="modal-header">
               
-              <h4 class="modal-title">Yeni Otobüs Ekle</h4>
+              <h4 class="modal-title">Yeni Sefer Ekle</h4>
               <button type="button" class="close" data-dismiss="modal">
                 &times;
               </button>
@@ -55,27 +66,61 @@
             <div class="modal-body">
               <form class="database_operation_form" data-url="<?= base_url("admin/sefer/insert") ?>">
                 <div class="form-group">
-                    <label>Kalkıs Yeri : </label>
-                    <input type="text" class="form-control" required name="KalkisYeri" placeholder="Kalkış Yeri Giriniz">
+                <label for="KalkisYeri">Kalkış Yeri:</label>
+                <select class="form-control" required name="KalkisYeri" id="KalkisYeri">
+                    
+                    <option value="istanbul">İstanbul</option>
+                    <option value="bursa">Bursa</option>
+                    <option value="kocaeli">Kocaeli</option>
+                    <option value="sakarya">Sakarya</option>
+                </select>
                 </div>
                 <div class="form-group">
                     <label>Varıs Yeri : </label>
-                    <input type="text" class="form-control" required name="VarisYeri" placeholder="Varıs Yeri Giriniz">
+                    <select class="form-control" required name="VarisYeri" id="VarisYeri">
+                    <option value="istanbul">İstanbul</option>
+                    <option value="bursa">Bursa</option>
+                    <option value="kocaeli">Kocaeli</option>
+                    <option value="sakarya">Sakarya</option>
+                </select>
                 </div>
                 <div class="form-group">
                     <label>Plaka : </label>
-                    <input type="text" class="form-control" required name="OtobusID" placeholder="Plaka Giriniz">
+                    <select class="form-control" required name="OtobusID" id="OtobusID">
+                   <?php foreach ($otobus as $key => $otobuss) 
+                   { 
+                     ?>
+                    <option value="<?php echo $otobuss["OtobusID"] ?>"><?php echo $otobuss["Plaka"] ?></option>
+                    <?php } ?>
+                    
+                </select>
                 </div>
                 <div class="form-group">
                     <label>Kalkış Saati : </label>
-                    <input type="text" class="form-control" required name="KalkisSaati" placeholder="Kalkış Saati Giriniz">
+                    <select class="form-control" required name="KalkisSaati" id="KalkisSaati">
+                      <option value="12">12.00</option>
+                      <option value="20">20.00</option>
+                      <option value="4">4.00</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label>Varış Saati : </label>
-                    <input type="text" class="form-control" required name="VarisSaati" placeholder="Varış Saati Giriniz">
+                    <select class="form-control" required name="VarisSaati" id="VarisSaati">
+                      <option value="15">15.00</option>
+                      <option value="23">23.00</option>
+                      <option value="7">7.00</option>
+                    </select>
                 </div>
                 <div class="form-group">
-                    
+                  <input name="Tarih" type="date" required min="<?php echo date('Y-m-d'); ?>">
+                </div>
+                <div class="form-group">
+                    <label>Fiyat: </label>
+                    <input type="number" class="form-control" required name="Fiyat">
+                </div>
+                
+                <br><br>
+                <div class="form-group">
                  <button class="btn btn-info">EKLE</button>
                 </div>
                 

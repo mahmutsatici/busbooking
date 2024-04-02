@@ -70,6 +70,10 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
         <link rel="stylesheet" href="<?php  echo base_url() ?>/assets/static/css/site.css" />    
         <link rel="stylesheet" href="<?php  echo base_url() ?>/assetsstatic/css/wild-wide-theme.css" />
+        <link rel="stylesheet" href="<?php echo base_url("assets/frontend/css/bootstrap.css"); ?>">
+    <script>
+        var BASE_URL = "<?php echo base_url(); ?>";
+    </script>
 
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
@@ -117,9 +121,7 @@
 </head>
 
 <body>
-    <?php  
-        session_start();
-    ?>
+   
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NSMS76N" height="0" width="0"
             style="display:none;visibility:hidden"></iframe></noscript>
@@ -138,48 +140,41 @@
 
                     <div class="header-right">
                         <div class="nav-menu" id="navi-menu">
-                            <ul class="nav-items">
-                                <li class="list-items">
-                                    <a class="header-link" href="<?php  echo base_url() ?>home/index">Ana Sayfa</a>
-                                </li>
-                                <li class="list-items">
-                                    <a class="header-link" href="<?php  echo base_url() ?>home/gallery">Bilet Al</a>
-                                </li>
-                                <li class="list-items">
-                                    <a class="header-link" href="<?php  echo base_url() ?>home/about">Hakkımızda</a>
-                                </li>
-                                <li class="list-items">
-                                    <a class="header-link" href="<?php  echo base_url() ?>home/amenities">Yardım</a>
-                                </li>
-                                <li class="list-items">
-                                    <a class="header-link" href="<?php  echo base_url() ?>home/contacts">İletişim</a>
-                                </li>
-
-                                <li class="list-items">
-                                    <a class="header-link" href="<?php  echo base_url() ?>home/faqs">SSS</a>
-                                </li>
-                            </ul>
-                            <div class="vertical"></div>
-
-                            <?php
                             
-                                if(isset($_SESSION['giris']) && $_SESSION['giris'] == true) { ?>
-                            <button class="head-btn" onclick="window.location.href ='<?php  echo base_url() ?>home/account'">
-                                Hesabım
-                            </button>
-                            <?php }
-                            else {  ?>
+                            
 
-                            <button class="head-btn" onclick="window.location.href ='<?php  echo base_url() ?>home/login'">
-                                Giriş
+                           
+                            <button class="head-btn" onclick="window.location.href ='<?php  echo base_url() ?>home/index'">
+                            Ana Sayfa
                             </button>
-
-                            <button class="head-btn" onclick="window.location.href = '<?php  echo base_url() ?>/home/register'">
-                                Kayıt Ol
+                            <button class="head-btn" onclick="window.location.href ='<?php  echo base_url() ?>home/amenities'">
+                                Yardım
                             </button>
-                            <?php
-                            } ?>
-
+                            <button class="head-btn" onclick="window.location.href ='<?php  echo base_url() ?>home/contacts'">
+                                İletişim
+                            </button>
+                            <button class="head-btn" onclick="window.location.href ='<?php  echo base_url() ?>home/faqs'">
+                                SSS
+                            </button>
+                            <?php if($this->session->userdata("session"))
+                                    {
+                                        ?><button class="head-btn" onclick="window.location.href ='<?php  echo base_url() ?>home/account'">
+                                            Hesabım
+                                          </button>  
+                                        <?php  
+                                    } else {
+                                        ?><div class="vertical"></div>
+                                        <button class="head-btn" onclick="window.location.href ='<?php  echo base_url() ?>login'">
+                                            Giriş
+                                        </button>
+                                        <div class="vertical"></div>
+                                        <button class="head-btn" onclick="window.location.href = '<?php  echo base_url() ?>/home/register'">
+                                            Kayıt Ol
+                                        </button><?php
+                                    } ?>
+                            
+                            
+                            
                         </div>
 
                         <!-- Mobile Menu / Mobile için menu -->

@@ -12,6 +12,10 @@
         }
         public function index()
         {
+            $data["locations"] = $this->CM->select_data("pnr","*","");
+            $data["kullanici"] = $this->CM->select_data("kullanicilar","*","");
+            $data["otobusler"] = $this->CM->select_data("otobus","*","");
+            $data["seferler"] = $this->CM->select_data("seferler","*","");
             $this->load->view('admin/includes/header');
             $this->load->view('admin/dashboard');
             $this->load->view('admin/includes/footer');
@@ -20,7 +24,7 @@
         {
             if ($this->input->method() == "post") {
                 if ($type=="insert") {
-                    $resp = $this->CM->insert_data("bms_location",$this->input->post());
+                    $resp = $this->CM->insert_data("pnr",$this->input->post());
                     if ($resp) {
                         echo json_encode(array("status"=>"true","message"=>"Başarılı","reload"=>base_url("admin/locations")));
                         
@@ -29,8 +33,8 @@
                     }
                 }
             }else{
-                $this->db->order_by('id','desc');
-                $data["locations"] = $this->CM->select_data("bms_location","*","");
+                $this->db->order_by('PNRID','desc');
+                $data["locations"] = $this->CM->select_data("pnr","*","");
                 $this->load->view('admin/includes/header');
                 $this->load->view('admin/locations',$data);
                 $this->load->view('admin/includes/footer');
@@ -40,16 +44,16 @@
 
         function delete_location($id)  //controllersda yönlendirmeler yapılır siilme işlmeiin fonksiyonunu burada sadece bir kere yazıyoruz commonmodeldeki fonksiyonu kullanıyoruz
         {
-            $this->CM->delete_data("bms_location",array("id"=>$id));
+            $this->CM->delete_data("pnr",array("PNRID"=>$id));
             redirect(base_url("admin/locations"));    
         }
         function update_location($id){
             if ($this->input->method() == "post") {
-                $this->CM->update_data("bms_location",$_POST,array("id"=>$id));
+                $this->CM->update_data("pnr",$_POST,array("PNRID"=>$id));
                 echo json_encode(array("status"=>"true","message"=>"Data Successfully Updated","reload"=>base_url("admin/locations")));
             }
             else {
-                $data["location"] = $this->CM->select_data("bms_location","*",array("id"=>$id))[0];
+                $data["location"] = $this->CM->select_data("pnr","*",array("PNRID"=>$id))[0];
             
             $this->load->view('admin/includes/header');
             $this->load->view('admin/edit_location',$data);

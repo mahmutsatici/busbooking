@@ -17,12 +17,12 @@
         <div class="container">
             <!-- Beach -->
             <div class="row" id="amenities-row">
-                <div class="col-12 col-lg-6 order2" id="left-abt-col">
+                <div class="col-12 col-lg-7 order2" id="left-abt-col">
                     <img class="amenities-imgs"
                         src="https://media.istockphoto.com/id/614316294/tr/foto%C4%9Fraf/white-bus-driving-along-the-asphalt-road-at-sunset.jpg?s=612x612&w=0&k=20&c=pSZqPL9bb_86jNNPjsISaRB55glgqc-tgos6LTxLT_A="
                         alt="mcccarthy-beach" />
                 </div>
-                <div class="col-12 col-lg-6 order1" id="right-abt-col">
+                <div class="col-12 col-lg-5 order1" id="right-abt-col">
                     <h2 class="header-h2">HİZMETLERİMİZ</h2>
                     <p class="text-parag">
                         Seyahat deneyimini daha konforlu ve keyifli hale getirmek için

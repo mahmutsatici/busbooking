@@ -15,13 +15,13 @@
     <section class="about-section">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-md-6" id="left-abt-col">
+                <div class="col-12 col-md-8" id="left-abt-col">
                     <iframe
                         src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12085.439633849706!2d29.9742543!3d40.7761011!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cb5020aa964337%3A0xec05577e181f8e89!2sIzmit%20%C5%9Eehirlerarasi%20Otob%C3%BCs%20Terminali!5e0!3m2!1str!2str!4v1709588703152!5m2!1str!2str"
                         width="600" height="450" style="border: 0" allowfullscreen="" loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
-                <div class="col-12 col-md-6" id="right-abt-col">
+                <div class="col-12 col-md-4" id="right-abt-col">
                     <h2 class="header-h2">İletişim Bilgileri</h2>
 
                     <ul class="contact-info-ul">
